@@ -1,13 +1,32 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
-const Playlists = (props) => (
-  <div>
-    <h3>Playlists</h3>
-    {props.playlists.map(playlist =>
-      <div key={playlist.id} className="playlist_component">
-        <h3>{playlist.name}</h3>
-      </div>)}
-  </div>
-)
+import PlaylistComponent from '../components/PlaylistComponent';
+//import NewPlaylistForm from './NewPlaylistForm';
+import {fetchPlaylists} from '../actions/PlaylistsActions';
 
-export default Playlists
+class Playlists extends Component{
+
+  componentDidMount() {
+    this.props.fetchPlaylists()
+  }
+
+  render() {
+    return (
+      <div className="PlaylistsContainer">
+        <h3>Playlists</h3>
+        <NewPlaylistForm />
+        {this.props.playlists.map(playlist =>
+          <Playlist key={playlist.id} playlist={playlist} />)}
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return ({
+    playlists: state.playlists
+  })
+}
+
+export default connect(mapStateToProps, { fetchPlaylists })(Playlists)
