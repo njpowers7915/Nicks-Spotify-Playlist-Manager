@@ -1,6 +1,6 @@
-//import React, {Component} from 'react';
+import React from 'react';
 
-const Playlists = (props) => {
+const Playlists = (props) => (
   <div>
     <h3>Playlists</h3>
     {props.playlists.map(playlist =>
@@ -8,6 +8,6 @@ const Playlists = (props) => {
         <h3>{playlist.name}</h3>
       </div>)}
   </div>
-}
+)
 
 export default Playlists
