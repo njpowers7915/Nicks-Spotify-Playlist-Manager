@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 //import { connect } from 'react-redux'
 
 //import PlaylistComponent from '../components/PlaylistComponent'
@@ -9,14 +9,14 @@ import React, {Component} from 'react';
 const PlaylistComponent = ({ playlist }) => (
   <div key={playlist.id} className="PlaylistComponent">
     <h3>{playlist.name}</h3>
-    <p>Description: ${playlist.description}</p>
-    <div className="PlaylistSongs">
+    <p>Description: {playlist.description}</p>
+    {/*<div className="PlaylistSongs">
       <ul>
       <% playlist.songs.each do |song| %>
         <li>song.name</li>
       <% end %>
       </ul>
-    </div>
+    </div>*/}
   </div>
 )
 

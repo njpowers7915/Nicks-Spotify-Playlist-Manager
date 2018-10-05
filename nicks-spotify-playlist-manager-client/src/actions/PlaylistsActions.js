@@ -13,7 +13,7 @@ const setPlaylists = playlists => {
 const addPlaylist = playlist => {
   return {
     type: 'CREATE_PLAYLIST_SUCCESS',
-    playlists
+    playlist
   }
 }
 

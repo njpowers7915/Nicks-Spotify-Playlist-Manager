@@ -15,9 +15,9 @@ class Playlists extends Component{
     return (
       <div className="PlaylistsContainer">
         <h3>Playlists</h3>
-        <NewPlaylistForm />
+        {/*<NewPlaylistForm />*/}
         {this.props.playlists.map(playlist =>
-          <Playlist key={playlist.id} playlist={playlist} />)}
+          <PlaylistComponent key={playlist.id} playlist={playlist} />)}
       </div>
     )
   }

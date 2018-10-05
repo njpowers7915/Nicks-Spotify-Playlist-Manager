@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <Playlists playlists={this.state.playlists} />
+        <Playlists />
       </div>
     );
   }
