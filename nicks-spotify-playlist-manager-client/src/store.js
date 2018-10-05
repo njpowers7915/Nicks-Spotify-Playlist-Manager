@@ -5,17 +5,13 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 
-//import playlists from './reducers/playlists';
+import CombineReducers from './reducers/CombineReducers';
 //import playlistFormData from './reducers/playlistFormData';
 
-const reducers = combineReducers({
-  playlists,
-  playlistFormData
-});
 const middleware = [thunk];
 
-//export default createStore(
-//  reducers,
-//  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-//  applyMiddleware(...middleware),
-//);
+export default createStore(
+  CombineReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(...middleware),
+);
