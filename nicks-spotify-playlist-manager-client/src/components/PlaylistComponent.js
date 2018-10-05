@@ -1,4 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
+//import { connect } from 'react-redux'
+
+//import PlaylistComponent from '../components/PlaylistComponent'
+//import NewPlaylistForm from './NewPlaylistForm'
+
+//class Playlists extends Component {}
 
 const PlaylistComponent = ({ playlist }) => (
   <div key={playlist.id} className="PlaylistComponent">
