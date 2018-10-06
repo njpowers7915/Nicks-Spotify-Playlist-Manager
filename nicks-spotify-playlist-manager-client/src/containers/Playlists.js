@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import PlaylistComponent from '../components/PlaylistComponent';
+import NewPlaylistForm from '../components/NewPlaylistForm'
 
-const Playlists = (props) => {
-  return(
-  <div className="PlaylistsContainer">
-    <h1>Playlists</h1>
-    {props.playlists.map(playlist => <PlaylistComponent key={playlist.id} playlist={playlist} />)}
-  </div>
-  )
+class Playlists extends Component {
+
+
+  render() {
+    return(
+      <div className="PlaylistsContainer">
+        <h1>Playlists</h1>
+        {this.props.playlists.map(playlist => <PlaylistComponent key={playlist.id} playlist={playlist} />)}
+        <NewPlaylistForm />
+      </div>
+    )
+  }
 }
 
 export default Playlists;
