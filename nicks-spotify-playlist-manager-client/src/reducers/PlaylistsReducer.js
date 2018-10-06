@@ -1,8 +1,4 @@
-const initialState = {
-  playlists: []
-}
-
-export default (state = initialState, action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case 'FETCH_PLAYLISTS_SUCCESS':
       return action.playlists;
