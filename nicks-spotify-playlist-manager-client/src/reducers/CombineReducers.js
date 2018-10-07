@@ -6,4 +6,4 @@ const rootReducer = combineReducers({
   PlaylistsReducer
 })
 
-export default reducers
+export default rootReducer

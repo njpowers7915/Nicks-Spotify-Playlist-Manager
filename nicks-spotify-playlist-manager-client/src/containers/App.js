@@ -16,7 +16,6 @@ componentDidMount() {
 }
 
   render() {
-    debugger
     return (
       <div className="App">
         <NavBar />

@@ -1,39 +1,45 @@
-const path = require('path');
-const webpack = require('webpack');
+var path = require('path');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-// env
-const buildDirectory = './dist/';
-var APP_DIR = path.resolve(__dirname, 'src/');
 module.exports = {
-  entry: APP_DIR + '/index.js',
-  devServer: {
-    hot: true,
-    inline: true,
-    port: 7700,
-    historyApiFallback: true,
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
+  devtool: 'cheap-eval-sourcemap',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/dev-server',
+    path.join(__dirname, '../src/main')
+  ],
   output: {
-    path: path.resolve(buildDirectory),
-    filename: 'app.js',
-    publicPath: 'http://localhost:7700/dist',
+    path: path.join(__dirname, '../dist'),
+    filename: 'bundle.js'
   },
-  externals: {
-    'cheerio': 'window',
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, '../src/index.html'),
+      inject: false
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.join(__dirname, '../assets'),
+        to: path.join(__dirname, '../dist/assets')
+      }
+    ])
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, '../dist'),
+    outputPath: '/lol',
+    hot: true
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /(node_modules|bower_components)/,
-      loader: 'babel',
-      query: {
-        presets: ['react', 'es2015', 'stage-0'],
-      },
-    }],
-  },
-  plugins: [],
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['babel-loader'],
+        include: path.join(__dirname, '../src')
+      }
+    ]
+  }
 };

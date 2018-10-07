@@ -3,11 +3,18 @@ import { connect } from 'react-redux';
 
 import PlaylistComponent from '../components/PlaylistComponent';
 import NewPlaylistForm from '../components/NewPlaylistForm'
+import { fetchPlaylists } from '../actions/PlaylistsActions'
 
 class Playlists extends Component {
 
 
+  componentDidMount() {
+    debugger
+    this.props.fetchPlaylists()
+  }
+
   render() {
+    debugger
     return(
       <div className="PlaylistsContainer">
         <h1>Playlists</h1>
@@ -24,7 +31,7 @@ const mapStateToProps = (state) => {
   })
 }
 
-export default connect(mapStateToProps)(Playlists); 
+export default connect(mapStateToProps, { fetchPlaylists })(Playlists);
 
 //
 
