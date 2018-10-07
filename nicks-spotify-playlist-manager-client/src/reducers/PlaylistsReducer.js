@@ -6,6 +6,9 @@ export default (state = [], action) => {
     case 'CREATE_PLAYLIST_SUCCESS':
       return state.concat(action.playlist);
 
+    default:
+       return state;
+
     /*case 'DELETE_PLAYLIST':
       const removalIndex = state.playlists.findIndex(playlist =>
        playlist.id === action.id)
@@ -16,7 +19,6 @@ export default (state = [], action) => {
             ...state.playlists.slice(removalIndex + 1)
           ]}
       )*/
-     default:
-      return state;
+
     }
 }

@@ -2,10 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+//import { createStore, applyMiddleware } from 'redux';
+//import thunk from 'redux-thunk';
 import './index.css';
+import store from './store.js'
 import App from './containers/App';
-import registerServiceWorker from './registerServiceWorker';
-import store from './store.js';
+//import registerServiceWorker from './registerServiceWorker';
+
+console.log(store)
 
 
 ReactDOM.render(
@@ -15,4 +19,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-registerServiceWorker();
+//registerServiceWorker();

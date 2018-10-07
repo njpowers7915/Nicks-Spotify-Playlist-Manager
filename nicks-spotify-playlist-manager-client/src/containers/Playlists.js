@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import PlaylistComponent from '../components/PlaylistComponent';
 import NewPlaylistForm from '../components/NewPlaylistForm'
@@ -17,9 +18,15 @@ class Playlists extends Component {
   }
 }
 
-export default Playlists;
+const mapStateToProps = (state) => {
+  return ({
+    playlists: state.playlists
+  })
+}
 
-//import { connect } from 'react-redux';
+export default connect(mapStateToProps)(Playlists); 
+
+//
 
 
 //import NewPlaylistForm from './NewPlaylistForm';
@@ -40,12 +47,4 @@ export default Playlists;
       </div>
     );
   }
-}
-
-const mapStateToProps = (state) => {
-  return ({
-    playlists: state.playlists
-  })
-}
-
-export default connect(mapStateToProps, { fetchPlaylists })(Playlists); */
+} */
