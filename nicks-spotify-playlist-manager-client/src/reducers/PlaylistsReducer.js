@@ -1,4 +1,4 @@
-export default (state = [], action) => {
+function playlistsReducer(state = [], action) {
   switch (action.type) {
     case 'FETCH_PLAYLISTS_SUCCESS':
       return action.playlists;
@@ -22,3 +22,5 @@ export default (state = [], action) => {
 
     }
 }
+
+export default playlistsReducer

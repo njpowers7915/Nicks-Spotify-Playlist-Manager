@@ -8,6 +8,13 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 class App extends Component {
 
+  constructor(props){
+  super(props)
+
+  this.state = {
+    playlists: []
+  }
+}
 
 componentDidMount() {
   fetch(`${API_URL}/playlists`)
@@ -19,7 +26,7 @@ componentDidMount() {
     return (
       <div className="App">
         <NavBar />
-        <Playlists />
+        <Playlists playlists={this.state.playlists} />
       </div>
     );
   }

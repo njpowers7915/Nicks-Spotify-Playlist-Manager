@@ -5,7 +5,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 // ** Action Creators **
 const setPlaylists = playlists => {
   return {
-    type: 'GET_PLAYLISTS_SUCCESS',
+    type: 'FETCH_PLAYLISTS_SUCCESS',
     playlists
   }
 }

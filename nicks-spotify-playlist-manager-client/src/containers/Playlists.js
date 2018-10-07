@@ -1,9 +1,28 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import PlaylistComponent from '../components/PlaylistComponent';
 import NewPlaylistForm from '../components/NewPlaylistForm'
 import { fetchPlaylists } from '../actions/PlaylistsActions'
+
+//import {Route, Switch} from 'react-router-dom';
+/*
+class Playlists extends Component {
+
+  render() {
+    return(
+      <div className="PlaylistComponent">
+        <h1>Playlists</h1>
+        <NewPlaylistForm />
+        {this.props.playlists.map(playlist => <PlaylistComponent key={playlist.id} playlist={playlist} />)}
+      </div>
+    )
+  }
+}
+
+export default Playlists;
+*/
+
 
 class Playlists extends Component {
 
@@ -32,26 +51,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { fetchPlaylists })(Playlists);
-
-//
-
-
-//import NewPlaylistForm from './NewPlaylistForm';
-//import { fetchPlaylists } from '../actions/PlaylistsActions';
-
-/* class Playlists extends Component{
-
-  componentDidMount() {
-    this.props.fetchPlaylists()
-  }
-
-  render() {
-    return (
-      <div className="Playlists">
-        <h1>Playlists</h1>
-        {this.props.playlists.map(playlist => <PlaylistComponent key={playlist.id} playlist={playlist} />)}
-        /*<SurfboardForm />
-      </div>
-    );
-  }
-} */
