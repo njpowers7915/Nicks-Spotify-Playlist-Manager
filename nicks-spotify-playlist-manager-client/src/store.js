@@ -4,29 +4,9 @@ import {
   combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-const playlistsReducer = (state = [], action) => {
-  switch(action.type) {
-    case 'GET_PLAYLISTS_SUCCESS':
-      return action.playlists;
+import rootReducer from './reducers/CombineReducers'
 
-    default:
-      return state
-  }
-}
-
-//const rootReducer = combineReducers({
-//  playlists
-//});
-
-
-//import playlistFormData from './reducers/playlistFormData';
-//import PlaylistsReducer from './reducers/PlaylistsReducer'
-
-const reducers = combineReducers({
-  playlistsReducer
-})
-
-const middleware = [thunk];
+const middleware = [thunk]
 
 export default createStore(
   reducers,
