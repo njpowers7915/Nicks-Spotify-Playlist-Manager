@@ -3,9 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Register from './Register';
-import LogIn from './LogIn';
-import LogOut from './LogOut';
+import Signup from './Signup';
+import Login from './Login';
+import Logout from './Logout';
 
 import './App.css';
 import NavBar from './NavBar'
