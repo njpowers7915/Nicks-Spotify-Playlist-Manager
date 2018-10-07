@@ -1,4 +1,4 @@
-//import { resetPlaylistForm } from './newPlaylistForm';
+import { resetPlaylistForm } from './newPlaylistForm';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -39,7 +39,7 @@ export const createPlaylist = playlist => {
       .then(response => response.json())
       .then(playlist => {
         dispatch(addPlaylist(playlist))
-        //dispatch(resetPlaylistForm())
+        dispatch(resetPlaylistForm())
       })
       .catch(error => console.log(error))
   }
