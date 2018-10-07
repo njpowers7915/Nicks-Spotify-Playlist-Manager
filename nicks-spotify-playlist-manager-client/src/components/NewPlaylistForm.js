@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-//import { connect } from 'react-redux'
+import { connect } from 'react-redux'
+//import { PropTypes } from 'prop-types';
+//import { Link } from 'react-router-dom';
 
-//import { updatePlaylistFromData } from '../actions/newPlaylistActions'
-//import { createPlaylist } from '../actions/PlaylistsActions'
+import { updatePlaylistFromData } from '../actions/newPlaylistActions'
+import { createPlaylist } from '../actions/PlaylistsActions'
 
 class NewPlaylistForm extends Component {
-/*
+
   handleOnChange = event => {
     const { name, value } = event.target;
     const currentPlaylistFormData = Object.assign({}, this.props.playlistFormData, {
@@ -20,25 +22,15 @@ class NewPlaylistForm extends Component {
   }
 
   render() {
-    const { name, description, songs } = this.props.playlistFormData;
-*/
+    const { name, description } = this.props.playlistFormData;
 
 
   render() {
     return(
       <div>
         Create New Playlist!
-        <form>
-        </form>
-      </div>
-    )
-
-    /*
-    return (
-      <div>
-        Create New Playlist!
         <form onSubmit={this.handleOnSubmit}>
-          <div>
+        <div>
             <label htmlFor="name">Name:</label>
             <input
               type="text"
@@ -60,9 +52,7 @@ class NewPlaylistForm extends Component {
           <button type="submit">Add Board</button>
         </form>
       </div>
-    )
-    */
-
+    )  
   }
 }
 

@@ -13,19 +13,19 @@ class Signup extends Component {
     this.state = { name: "", email: "", password: "" };
   }
 
-  componentWillUnmount() {
-    this.props.actions.clearAuthError();
+  //componentWillUnmount() {
+  //  this.props.actions.clearAuthError();
+  //}
+
+  onChange = (event) => {
+    this.setState({[event.target.name]: event.target.value});
   }
 
-  onChange = (ev) => {
-    this.setState({[ev.target.name]: ev.target.value});
-  }
-
-  onSubmit = (ev) => {
+  onSubmit = (event) => {
     const { state } = this.props.location;
     const redirect = state ? state.from.pathname : "/"
 
-    ev.preventDefault();
+    event.preventDefault();
 
     this.props.actions.signUpUser(this.state, this.props.history, redirect);
   }
