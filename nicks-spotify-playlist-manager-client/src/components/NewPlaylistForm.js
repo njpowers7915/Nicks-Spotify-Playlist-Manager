@@ -24,8 +24,6 @@ class NewPlaylistForm extends Component {
   render() {
     const { name, description } = this.props.playlistFormData;
 
-
-  render() {
     return(
       <div>
         Create New Playlist!
@@ -52,7 +50,7 @@ class NewPlaylistForm extends Component {
           <button type="submit">Add Board</button>
         </form>
       </div>
-    )  
+    )
   }
 }
 
