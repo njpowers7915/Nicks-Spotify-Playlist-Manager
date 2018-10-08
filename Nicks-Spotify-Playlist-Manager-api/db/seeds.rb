@@ -11,7 +11,7 @@ Track.create(name: 'Heroes', artist: 'Alesso')
 Track.create(name: 'Gin & Juice', artist: 'Snoop Dogg')
 Track.create(name: 'Wild Out', artist: 'Waka Flocka')
 
-User.create(name: 'Steve', email: 'steve@gmail.com', admin: true, password_digest: '1121')
+User.create(name: 'Steve', email: 'steve@gmail.com', password_digest: '1121')
 User.create(name: 'Nathan', email: 'nathan@gmail.com', password_digest: '121')
 
 Playlist.create(name: 'Rap Playlist', user_id: 1, description: 'A rap playlist')
