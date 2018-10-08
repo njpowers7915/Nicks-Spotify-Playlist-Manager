@@ -1,32 +1,38 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 //import { PropTypes } from 'prop-types';
-//import { Link } from 'react-router-dom';
 
 import { updatePlaylistFromData } from '../actions/playlistFormActions'
 import { createPlaylist } from '../actions/PlaylistsActions'
 
 class NewPlaylistForm extends Component {
 
-  handleOnChange = event => {
-    const { name, value } = event.target;
-    const currentPlaylistFormData = Object.assign({}, this.props.playlistFormData, {
-      [name]: value
-    })
-    this.props.updatePlaylistFromData(currentPlaylistFormData)
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      description: ''
+    }
   }
 
   handleOnSubmit = event => {
     event.preventDefault()
-    this.props.createPlaylist(this.props.playlistFormData)
+    const { createPlaylist, history } = this.props
+    createPlaylist(this.state)
+    history.push('/playlists')
+  }
+
+  handleOnChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   render() {
-    const { name, description } = this.props.playlistFormData;
 
     return(
       <div>
-        Create New Playlist!
+        <h3>Create New Playlist!</h3>
         <form onSubmit={this.handleOnSubmit}>
         <div>
             <label htmlFor="name">Name:</label>
@@ -34,7 +40,7 @@ class NewPlaylistForm extends Component {
               type="text"
               onChange={this.handleOnChange}
               name="name"
-              value={name}
+              value={this.state.name}
             />
           </div>
           <div>
@@ -43,10 +49,9 @@ class NewPlaylistForm extends Component {
               type="text"
               onChange={this.handleOnChange}
               name="description"
-              value={description}
+              value={this.state.description}
             />
           </div>
-
           <button type="submit">Add Board</button>
         </form>
       </div>
@@ -54,4 +59,4 @@ class NewPlaylistForm extends Component {
   }
 }
 
-export default NewPlaylistForm
+export default connect(null, { createPlaylist })(NewPlaylistForm)
