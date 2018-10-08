@@ -1,12 +1,12 @@
 import React from 'react';
-//import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 //import PlaylistComponent from '../components/PlaylistComponent'
 //import NewPlaylistForm from './NewPlaylistForm'
 
 //class Playlists extends Component {}
 
-const PlaylistComponent = ({ playlist }) => (
+const PlaylistComponent = ({ playlist }) =>
   <div key={playlist.id} className="PlaylistComponent">
     <h3>{playlist.name}</h3>
     <p>Description: {playlist.description}</p>
@@ -18,6 +18,15 @@ const PlaylistComponent = ({ playlist }) => (
       </ul>
     </div>*/}
   </div>
-)
 
-export default PlaylistComponent;
+const mapStateToProps = (state, ownProps) => {
+  const playlist = state.playlists.find(playlist => playlist.id === +ownProps.match.params.playlistId)
+
+  if (playlist) {
+    return { playlist }
+  } else {
+    return { playlist: {} }
+  }
+}
+
+export default connect(mapStateToProps)(PlaylistComponent);

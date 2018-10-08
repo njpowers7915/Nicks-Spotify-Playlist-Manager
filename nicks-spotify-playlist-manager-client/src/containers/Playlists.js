@@ -32,12 +32,19 @@ class Playlists extends Component {
     this.props.fetchPlaylists()
   }
 
+  const renderPlaylists = () => {
+    this.props.playlists.map(playlist =>
+      <Link key={playlist.id} to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
+    )
+  }
+
   render() {
     debugger
     return(
       <div className="PlaylistsContainer">
         <h1>Playlists</h1>
-        {this.props.playlists.map(playlist => <PlaylistComponent key={playlist.id} playlist={playlist} />)}
+        {/*{this.props.playlists.map(playlist => <PlaylistComponent key={playlist.id} playlist={playlist} />)} */}
+        {renderPlaylists}
         <NewPlaylistForm />
       </div>
     )
