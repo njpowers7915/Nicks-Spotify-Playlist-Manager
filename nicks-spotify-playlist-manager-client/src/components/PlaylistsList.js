@@ -2,8 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PlaylistsList = ({ playlists }) => {
+  debugger
+  //let playlist_data = playlists.data
   const renderPlaylists = playlists.map(playlist =>
-    <Link style={{ marginRight: '12px' }} key={playlist.id} to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
+    <ul>
+      <li>
+        <Link key={playlist.id} to={`/playlists/${playlist.id}`}>{playlist.attributes.name}</Link>
+      </li>
+    </ul>
   );
 
   return (

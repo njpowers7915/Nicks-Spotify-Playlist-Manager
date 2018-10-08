@@ -22,7 +22,7 @@ export const fetchPlaylists = () => {
   return dispatch => {
     return fetch(`${API_URL}/playlists`)
       .then(response => response.json())
-      .then(playlists => dispatch(setPlaylists(playlists)))
+      .then(playlists => dispatch(setPlaylists(playlists.data)))
       .catch(error => console.log(error));
   }
 }

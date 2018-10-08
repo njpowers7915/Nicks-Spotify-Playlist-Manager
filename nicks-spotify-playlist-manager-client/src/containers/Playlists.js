@@ -12,6 +12,7 @@ class Playlists extends Component {
 
   componentDidMount() {
     this.props.fetchPlaylists()
+    debugger
   }
 
   render() {
