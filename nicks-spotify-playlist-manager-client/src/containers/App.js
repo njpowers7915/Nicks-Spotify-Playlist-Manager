@@ -16,8 +16,6 @@ const App = (props) =>
   <Router>
     <div>
       <NavBar />
-    </div>
-    <div>
       <Route exact path = "/playlists" component={Playlists} />
     </div>
   </Router>
