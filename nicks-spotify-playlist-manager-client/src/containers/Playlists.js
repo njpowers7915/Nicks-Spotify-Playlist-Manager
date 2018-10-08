@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import PlaylistComponent from '../components/PlaylistComponent';
 import NewPlaylistForm from '../components/NewPlaylistForm'
+import PlaylistsList from '../components/PlaylistsList'
 import { fetchPlaylists } from '../actions/PlaylistsActions'
 
 class Playlists extends Component {
