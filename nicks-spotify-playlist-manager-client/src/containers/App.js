@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 /*
 import Signup from './Signup';
 import Login from './Login';
@@ -12,18 +12,14 @@ import Playlists  from './Playlists'
 
 //const API_URL = process.env.REACT_APP_API_URL;
 
-class App extends Component {
-
-
-  render() {
-    return (
-      <div className="App">
-        <NavBar />
-        {/*<Route exact path="/playlists" component={Playlists} /> */}
-        <Playlists />
-      </div>
-    );
-  }
-}
+const App = (props) =>
+  <Router>
+    <div>
+      <NavBar />
+    </div>
+    <div>
+      <Route exact path = "/playlists" component={Playlists} />
+    </div>
+  </Router>
 
 export default App;

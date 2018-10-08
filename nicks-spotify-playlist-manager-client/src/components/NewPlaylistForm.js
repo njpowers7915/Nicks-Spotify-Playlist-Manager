@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 //import { PropTypes } from 'prop-types';
 
-import { updatePlaylistFromData } from '../actions/playlistFormActions'
+//import { updatePlaylistFromData } from '../actions/playlistFormActions'
 import { createPlaylist } from '../actions/PlaylistsActions'
 
 class NewPlaylistForm extends Component {
