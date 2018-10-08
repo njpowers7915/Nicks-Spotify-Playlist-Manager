@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 //import { PropTypes } from 'prop-types';
 //import { Link } from 'react-router-dom';
 
-import { updatePlaylistFromData } from '../actions/newPlaylistActions'
+import { updatePlaylistFromData } from '../actions/playlistFormActions'
 import { createPlaylist } from '../actions/PlaylistsActions'
 
 class NewPlaylistForm extends Component {

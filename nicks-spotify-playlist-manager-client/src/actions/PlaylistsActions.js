@@ -1,4 +1,4 @@
-import { resetPlaylistForm } from './newPlaylistForm';
+import { resetPlaylistForm } from './playlistFormActions';
 
 const API_URL = process.env.REACT_APP_API_URL;
 

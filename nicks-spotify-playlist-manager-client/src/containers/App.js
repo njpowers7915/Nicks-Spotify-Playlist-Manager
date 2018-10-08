@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+//import { connect } from 'react-redux';
+//import { bindActionCreators } from 'redux';
 
 import Signup from './Signup';
 import Login from './Login';
@@ -20,8 +20,8 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <Playlists />
-      </div>
+        <Route exact path="/playlists" component={Playlists} />
+    </div>
     );
   }
 }

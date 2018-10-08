@@ -1,5 +1,6 @@
-export const updatePlaylistFormData =     playlistFormData
- => {
+// ** Action Creators **
+
+export const updatePlaylistFormData = playlistFormData => {
   return {
     type: 'UPDATED_DATA',
     playlistFormData
