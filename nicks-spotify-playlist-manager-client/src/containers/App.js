@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 /*
 import Signup from './Signup';
 import Login from './Login';
@@ -16,7 +16,8 @@ const App = (props) =>
   <Router>
     <div>
       <NavBar />
-      <Route exact path = "/playlists" component={Playlists} />
+      <Link to="/playlists/new">Create a new Playlist!</Link>
+      <Route exact path="/playlists" component={Playlists} />
     </div>
   </Router>
 
