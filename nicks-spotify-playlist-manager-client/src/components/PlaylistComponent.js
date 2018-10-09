@@ -8,8 +8,8 @@ import { connect } from 'react-redux'
 
 const PlaylistComponent = ({ playlist }) =>
   <div key={playlist.id} className="PlaylistComponent">
-    <h3>{playlist.attributes.name}</h3>
-    <p>Description: {playlist.attributes.description}</p>
+    <h3>{playlist.name}</h3>
+    <p>Description: {playlist.description}</p>
     {/*<div className="PlaylistSongs">
       <ul>
       <% playlist.songs.each do |song| %>
@@ -20,8 +20,7 @@ const PlaylistComponent = ({ playlist }) =>
   </div>
 
 const mapStateToProps = (state, ownProps) => {
-  const playlist = state.playlists.find(playlist => playlist.id === +ownProps.match.params.playlistId)
-  debugger
+  const playlist = state.playlists.find(playlist => playlist.id === ownProps.match.params.playlistId)
   if (playlist) {
     return { playlist }
   } else {

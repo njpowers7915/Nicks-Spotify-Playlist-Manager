@@ -52,7 +52,7 @@ class NewPlaylistForm extends Component {
               value={this.state.description}
             />
           </div>
-          <button type="submit">Add Board</button>
+          <button type="submit">Create Playlist</button>
         </form>
       </div>
     )

@@ -1,21 +1,58 @@
+/*
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PlaylistsList = ({ playlists }) => {
-  //let playlist_data = playlists.data
+  debugger
   const renderPlaylists = playlists.map(playlist =>
-      <li key={playlist.id}>
-        <Link to={`/playlists/${playlist.id}`}>{playlist.attributes.name}</Link>
-      </li>
+    <Link style={{ marginRight: '12px' }} key={playlist.id} to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
   );
 
   return (
-    <div className="playlistList">
-      <ul>
+    <div>
       {renderPlaylists}
-      </ul>
     </div>
   );
 };
 
 export default PlaylistsList;
+*/
+
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchPlaylists } from '../actions/PlaylistsActions';
+
+class PlaylistsList extends Component {
+
+  componentDidMount() {
+    this.props.fetchPlaylists()
+  }
+
+  render () {
+
+    const renderPlaylists = this.props.playlists.map(playlist =>
+        <li key={playlist.id}>
+          <Link to={`/playlists/${playlist.id}`} >{playlist.attributes.name}</Link>
+        </li>
+    );
+
+
+    return (
+      <div className="playlistList">
+        <h3>Playlists</h3>
+        <ul>
+        {renderPlaylists}
+        </ul>
+      </div>
+    );
+  }
+};
+
+const mapStateToProps = state => {
+  return {
+    playlists: state.playlists
+  }
+}
+
+export default connect(mapStateToProps, { fetchPlaylists })(PlaylistsList);
