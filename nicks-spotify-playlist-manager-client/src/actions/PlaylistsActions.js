@@ -27,6 +27,17 @@ export const fetchPlaylists = () => {
   }
 }
 
+export const fetchPlaylist = id => {
+  return dispatch => {
+    return fetch(`${API_URL}/playlists${id}`)
+      .then(response => response.json())
+      .then(playlist => dispatch({
+        type: 'FETCH_PLAYLIST',
+        payload: playlist.playlist
+      }))
+  }
+}
+
 export const createPlaylist = playlist => {
   return dispatch => {
     return fetch(`${API_URL}/playlists`, {
