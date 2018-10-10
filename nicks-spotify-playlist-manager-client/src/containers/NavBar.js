@@ -1,5 +1,5 @@
 import React from 'react';
-//import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 /* Add basic styling for NavLinks
 const link = {
@@ -19,7 +19,7 @@ const link = {
 
 const NavBar = () =>
   <div>
-    <h3>Welcome user! -- Home -- Sign Out</h3>
+    <h3>Welcome user! -- <Link to="/playlists">Home</Link> -- Sign Out</h3>
 
     {/* {<NavLink to="/" exact style={link}
       activeStyle={{background: 'darkblue'}}>Home</NavLink>

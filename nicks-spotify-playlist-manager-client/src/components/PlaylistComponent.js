@@ -29,6 +29,7 @@ const PlaylistComponent = ({playlist}) =>
   <div key={playlist.id} className="PlaylistComponent">
     <h3>{playlist.name}</h3>
     <p>Description: {playlist.description}</p>
+    <h3>SONG LIST</h3>
     {/*<div className="PlaylistSongs">
       <ul>
       <% playlist.songs.each do |song| %>
@@ -42,7 +43,12 @@ const PlaylistComponent = ({playlist}) =>
 const mapStateToProps = (state, ownProps) => {
   const playlist = state.playlists.find(playlist => playlist.id === ownProps.match.params.playlistId)
   if (playlist) {
-    return { playlist: {id: playlist.id, name: playlist.attributes.name, description: playlist.attributes.description} }
+    return { playlist: {
+      id: playlist.id,
+      name: playlist.attributes.name,
+      description: playlist.attributes.description,
+      tracks: playlist.attributes.tracks
+    } }
   } else {
     return { playlist: {} }
   }

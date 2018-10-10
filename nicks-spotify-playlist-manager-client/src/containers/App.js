@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 /*
 import Signup from './Signup';
 import Login from './Login';
@@ -18,7 +18,6 @@ class App extends React.Component {
       <Router>
         <div>
           <NavBar />
-          <Link to="/playlists/new">Create a new Playlist!</Link>
           <Route path="/playlists" component={Playlists} />
         </div>
       </Router>
