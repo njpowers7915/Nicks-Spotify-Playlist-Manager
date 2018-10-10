@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchPlaylists } from '../actions/PlaylistsActions';
+//import { fetchTracks } from '../actions/TracksActions';
 
-class PlaylistsList extends Component {
+class TracksList extends Component {
 
   componentDidMount() {
-    this.props.fetchPlaylists()
+    this.props.fetchTracks()
   }
 
   render () {
 
-    const renderPlaylists = this.props.playlists.map(playlist =>
-        <li key={playlist.id}>
-          <Link to={`/playlists/${playlist.id}`} playlist={playlist} >{playlist.attributes.name}</Link>
+    const renderTracks = this.props.tracks.map(track =>
+        <li key={track.id}>
+          <TrackComponent track={track} />
         </li>
     );
 
