@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Trackslist from './TracksList'
+import TracksList from './TracksList'
 //import { fetchPlaylist } from '../actions/PlaylistsActions'
 
 //import PlaylistComponent from '../components/PlaylistComponent'
@@ -31,25 +31,19 @@ const PlaylistComponent = ({playlist}) =>
     <h3>{playlist.name}</h3>
     <p>Description: {playlist.description}</p>
     <TracksList tracks={playlist.tracks} />
-    {/*<div className="PlaylistSongs">
-      <ul>
-      <% playlist.songs.each do |song| %>
-        <li>song.name</li>
-      <% end %>
-      </ul>
-    </div> */}
   </div>;
 
 
 const mapStateToProps = (state, ownProps) => {
   const playlist = state.playlists.find(playlist => playlist.id === ownProps.match.params.playlistId)
   if (playlist) {
+    debugger
     return { playlist: {
       id: playlist.id,
       name: playlist.attributes.name,
       description: playlist.attributes.description,
       tracks: playlist.attributes.tracks
-    } }
+    }}
   } else {
     return { playlist: {} }
   }
