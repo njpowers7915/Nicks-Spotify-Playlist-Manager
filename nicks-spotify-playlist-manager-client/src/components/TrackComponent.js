@@ -6,20 +6,4 @@ const TrackComponent = ({track}) =>
     <li>{track.name} -- {track.artist}</li>
   </div>;
 
-/*
-  const mapTrackToProps = (state, ownProps) => {
-    const track = state.tracks.find(playlist => playlist.id === ownProps.match.params.playlistId)
-    if (playlist) {
-      return { playlist: {
-        id: playlist.id,
-        name: playlist.attributes.name,
-        description: playlist.attributes.description,
-        tracks: playlist.attributes.tracks
-      } }
-    } else {
-      return { playlist: {} }
-    }
-  };
-*/
-
-  export default TrackComponent;
+export default TrackComponent;
