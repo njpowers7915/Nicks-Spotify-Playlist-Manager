@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 
 class TracksList extends Component {
 
-  componentDidMount() {
-    this.props.fetchTracks()
-  }
+  //componentDidMount() {
+  //  this.props.fetchTracks()
+  //}
 
   render () {
 
@@ -30,10 +30,10 @@ class TracksList extends Component {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    playlists: state.playlists
-  }
-}
-
-export default connect(mapStateToProps, { fetchPlaylists })(PlaylistsList);
+//const mapStateToProps = state => {
+//  return {
+//    playlists: state.playlists
+//  }
+//}
+export default TracksList
+//export default connect(mapStateToProps, { fetchPlaylists })(PlaylistsList);

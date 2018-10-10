@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import Trackslist from './TracksList'
 //import { fetchPlaylist } from '../actions/PlaylistsActions'
 
 //import PlaylistComponent from '../components/PlaylistComponent'
@@ -29,7 +30,7 @@ const PlaylistComponent = ({playlist}) =>
   <div key={playlist.id} className="PlaylistComponent">
     <h3>{playlist.name}</h3>
     <p>Description: {playlist.description}</p>
-    <h3>SONG LIST</h3>
+    <TracksList tracks={playlist.tracks} />
     {/*<div className="PlaylistSongs">
       <ul>
       <% playlist.songs.each do |song| %>
