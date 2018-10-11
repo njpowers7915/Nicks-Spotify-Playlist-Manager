@@ -7,6 +7,7 @@ import './App.css';
 import NavBar from './NavBar'
 import PlaylistList  from '../components/PlaylistList'
 import SignupForm from '../components/SignupForm'
+import LoginForm from '../components/LoginForm'
 import WelcomePage from '../components/Home'
 
 class App extends Component {
@@ -30,8 +31,26 @@ class App extends Component {
         'Content-Type': 'application/json',
       }
     }).then(response => response.json())
-      .catch(error => console.log(error))
+      .then(response => {
+        Auth.authenticateToken(response.token)
+        this.setState({
+          auth: Auth.isUserAuthenticated()
+        })
+      }).catch(error => console.log(error))
+  }
 
+  handleLoginSubmit(event, data) {
+    event.preventDefault()
+    fetch('/login', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => response.json())
+      .then(response => {
+        console.log(response)
+      }).catch(error => console.log(error))
   }
 
   render() {
