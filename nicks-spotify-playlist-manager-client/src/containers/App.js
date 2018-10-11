@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Auth from '../modules/Auth'
 
@@ -52,20 +52,20 @@ class App extends Component {
         'Content-Type': 'application/json'
       }
     }).then(response => response.json())
-    .then(response => {
-      Auth.authenticateToken(response.token)
-      this.setState({
-        auth: Auth.isUserAuthenticated(),
-  //      shouldGoToProfile: false
-      }).catch(error => console.log(error))
-  }
+      .then(response => {
+        Auth.authenticateToken(response.token)
+        this.setState({
+          auth: Auth.isUserAuthenticated(),
+        }).catch(error => console.log(error))
+      })
+    }
 
-  handleLogout() {
+  handleLogout(data) {
     fetch('/logout', {
       method: 'DELETE',
       body: JSON.stringify(data),
       headers: {
-        token: Auth.getToken();
+        token: Auth.getToken(),
         'Authorization': `Token ${Auth.getToken()}`
       }
     }).then(response => {
@@ -96,6 +96,9 @@ class App extends Component {
 //      {(this.state.shouldGoToProfile) ? <Redirect to "/playlists" /> : ''}
     )
   }
+}
+
+export default App
 
 /*
 class App extends Component {

@@ -14,7 +14,7 @@ class NewPlaylistForm extends Component {
       name: '',
       description: ''
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleOnChange = this.handleOnChange.bind(this)
   }
 
   handleOnSubmit = event => {

@@ -5,10 +5,10 @@ import { fetchPlaylists } from '../actions/PlaylistsActions';
 
 class PlaylistList extends Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
-      playlistList: null,
+      playlistList: [],
       playlistListLoaded: false
     }
   }
@@ -21,18 +21,26 @@ class PlaylistList extends Component {
           playlistList: response.playlists,
           playlistListLoaded: true
       }).catch(error => console.log(error))
-  }
-
-  renderPlaylists() {
-    return this.state.playlistList.map(playlist => {
-      return(
-        <div className="playlist" key={playlist.id}>
-          <h3>{playlist.name}</h3>
-          <p>{plalylist.description}</p>
-        </div>
-      )
     })
   }
+
+
+  renderPlaylists() {
+    return this.state.playlistList.map(playlist =>
+        <div className="playlist" key={playlist.id}>
+          <h3>{playlist.name}</h3>
+          <p>{playlist.description}</p>
+        </div>
+      );
+    }
+/*
+  const renderPlaylists = this.props.playlists.map(playlist =>
+      <li key={playlist.id}>
+        <Link to={`/playlists/${playlist.id}`} playlist={playlist} >{playlist.attributes.name}</Link>
+      </li>
+  );
+*/
+
 
   render() {
     return (
