@@ -8,7 +8,7 @@ import NavBar from './NavBar'
 import PlaylistList  from '../components/PlaylistList'
 import SignupForm from '../components/SignupForm'
 import LoginForm from '../components/LoginForm'
-//import WelcomePage from '../components/Home'
+import WelcomeContainer from './WelcomeContainer'
 
 class App extends Component {
   constructor() {
@@ -84,6 +84,10 @@ class App extends Component {
         </div>
         <Route exact path="/playlists" render={() =>
         <PlaylistList />} />
+        <Route exact path="/"
+          render={() => (this.state.auth)
+            ? <Redirect to="/playlists" />
+            : <WelcomeContainer />} />
         <Route exact path="/signup"
           render={() => (this.state.auth)
             ? <Redirect to="/playlists" />
