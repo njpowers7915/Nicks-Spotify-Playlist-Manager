@@ -8,12 +8,12 @@ const PlaylistComponent = ({playlist}) =>
     <p>Description: {playlist.description}</p>
     <TracksList tracks={playlist.tracks} />
   </div>;
+  debugger
 
 
 const mapStateToProps = (state, ownProps) => {
   const playlist = state.playlists.find(playlist => playlist.id === ownProps.match.params.playlistId)
   if (playlist) {
-    debugger
     return { playlist: {
       id: playlist.id,
       name: playlist.attributes.name,
