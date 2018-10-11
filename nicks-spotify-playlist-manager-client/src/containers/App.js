@@ -8,14 +8,15 @@ import NavBar from './NavBar'
 import PlaylistList  from '../components/PlaylistList'
 import SignupForm from '../components/SignupForm'
 import LoginForm from '../components/LoginForm'
-import WelcomePage from '../components/Home'
+//import WelcomePage from '../components/Home'
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      auth: Auth.isUserAuthenticated()
+      auth: Auth.isUserAuthenticated(),
+      shouldGoToProfile: false
     }
     this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -35,7 +36,8 @@ class App extends Component {
       .then(response => {
         Auth.authenticateToken(response.token)
         this.setState({
-          auth: Auth.isUserAuthenticated()
+          auth: Auth.isUserAuthenticated(),
+//          shouldGoToProfile: true
         })
       }).catch(error => console.log(error))
   }
@@ -52,7 +54,8 @@ class App extends Component {
     .then(response => {
       Auth.authenticateToken(response.token)
       this.setState({
-        auth: Auth.isUserAuthenticated()
+        auth: Auth.isUserAuthenticated(),
+  //      shouldGoToProfile: false
       }).catch(error => console.log(error))
   }
 
@@ -62,10 +65,15 @@ class App extends Component {
         <Route exact path="/playlists" render={() =>
         <PlaylistList />} />
         <Route exact path="/signup"
-          render={() => <SignupForm handleSignupSubmit={this.handleSignupSubmit} />} />
+          render={() => (this.state.auth)
+            ? <Redirect to="/playlists" />
+            : <SignupForm handleSignupSubmit={this.handleSignupSubmit} />} />
         <Route exact path="/login"
-          render={() => <LoginForm handleLoginSubmit={this.handleLoginSubmit} />} />
+          render={() => (this.state.auth)
+            ? <Redirect to="/playlists" />
+            : <LoginForm handleLoginSubmit={this.handleLoginSubmit} />} />
       </div>
+//      {(this.state.shouldGoToProfile) ? <Redirect to "/playlists" /> : ''}
     )
   }
 
