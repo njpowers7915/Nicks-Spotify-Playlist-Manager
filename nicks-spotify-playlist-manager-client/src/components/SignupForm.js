@@ -1,4 +1,45 @@
 import React, { Component } from 'react';
+
+class SignupForm extends Component {
+  constructor() {
+    super()
+    this.state = {
+      username: '',
+      password: '',
+      email: '',
+      name: '',
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  render() {
+    return(
+      <div className="signupForm">
+        <form onSubmit={(event) => this.props.handleSignupSubmit(event, this.state)}>
+          <input type="text" name="username" placeholder="username"
+            value={this.state.username} onChange={this.handleChange} />
+          <input type="password" name="password" placeholder="password"
+            value={this.state.password} onChange={this.handleChange} />
+          <input type="email" name="email" placeholder="email"
+            value={this.state.email} onChange={this.handleChange} />
+          <input type="text" name="name" placeholder="name"
+            value={this.state.name} onChange={this.handleChange} />
+          <input type="submit" value="Register!" />
+        </form>
+      </div>
+    )
+  }
+}
+
+/*
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -100,3 +141,4 @@ const mapDispatchToProps = (dispatch) => {
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Signup)
 );
+*/

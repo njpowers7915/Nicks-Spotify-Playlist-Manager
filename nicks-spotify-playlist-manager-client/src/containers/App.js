@@ -15,6 +15,11 @@ class App extends Component {
     this.state = {
       auth: Auth.isUserAuthenticated()
     }
+    this.handleSignupSubmit = this.handleSignupSubmit.bind(this)
+  }
+
+  handleSignupSubmit(event) {
+    event.preventDefault()
   }
 
   render() {
@@ -22,6 +27,8 @@ class App extends Component {
       <div className="App">
         <Route exact path="/playlists" render={() =>
         <PlaylistList />} />
+        <Route exact path="/signup"
+          render={() => <SignupForm handleSignupSubmit />} />
       </div>
     )
   }

@@ -15,10 +15,10 @@ class PlaylistList extends Component {
 
   componentDidMount() {
     fetch('/playlists')
-      .then(res => res.json)
-      .then(res => {
+      .then(response => response.json())
+      .then(response => {
         this.setState({
-          playlistList: res.playlists,
+          playlistList: response.playlists,
           playlistListLoaded: true
       }).catch(error => console.log(error))
   }
@@ -44,6 +44,8 @@ class PlaylistList extends Component {
     )
   }
 }
+
+export default PlaylistList
 
 /*
 class PlaylistsList extends Component {
