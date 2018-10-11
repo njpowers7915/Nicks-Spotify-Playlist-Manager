@@ -3,6 +3,49 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPlaylists } from '../actions/PlaylistsActions';
 
+class PlaylistList extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      playlistList: null,
+      playlistListLoaded: false
+    }
+  }
+
+  componentDidMount() {
+    fetch('/playlists')
+      .then(res => res.json)
+      .then(res => {
+        this.setState({
+          playlistList: res.playlists,
+          playlistListLoaded: true
+      }).catch(error => console.log(error))
+  }
+
+  renderPlaylists() {
+    return this.state.playlistList.map(playlist => {
+      return(
+        <div className="playlist" key={playlist.id}>
+          <h3>{playlist.name}</h3>
+          <p>{plalylist.description}</p>
+        </div>
+      )
+    })
+  }
+
+  render() {
+    return (
+      <div className="playlist-list">
+        {(this.state.playlistListLoaded)
+        ? this.renderPlaylists()
+        : <p>Loading...</p>}
+      </div>
+    )
+  }
+}
+
+/*
 class PlaylistsList extends Component {
 
   componentDidMount() {
@@ -37,3 +80,4 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { fetchPlaylists })(PlaylistsList);
+*/
