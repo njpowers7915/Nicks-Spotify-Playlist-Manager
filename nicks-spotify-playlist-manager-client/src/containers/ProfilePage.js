@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import Auth from '../modules/Auth'
+import NewPlaylistForm from '../components/NewPlaylistForm'
 
 class ProfilePage extends Component {
   constructor() {
@@ -11,6 +12,10 @@ class ProfilePage extends Component {
   }
 
   componentDidMount() {
+    this.getUserPlaylists()
+  }
+
+  getUserPlaylists() {
     fetch('/profile', {
       method: 'GET',
       headers: {
@@ -26,14 +31,33 @@ class ProfilePage extends Component {
       }).catch(error => console.log(error))
   }
 
+  addPlaylist(event, data) {
+    fetch('/playlists', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        token: Auth.getToken(),
+        'Authorization': `Token ${Auth.getToken()}`
+      },
+      body: JSON.stringify({
+        playlist: data,
+      })
+    }).then(response => response.json())
+      .then(response => {
+        console.log(response)
+        this.getUserPlaylists()
+      }).catch(error => console.log(error))
+  }
+
   render(){
     return(
       <div className="user-profile">
-      {(this.state.playlistsLoaded)
-        ? this.state.playlists.map(playlist => {
-          return <h1 key={playlist.id}>{playlist.name}</h1>
-        })
-        : <p>Loading...</p>}
+        <NewPlaylistForm addPlaylist={this.addPlaylist} />
+        {(this.state.playlistsLoaded)
+          ? this.state.playlists.map(playlist => {
+            return <h1 key={playlist.id}>{playlist.name}</h1>
+          })
+          : <p>Loading...</p>}
       </div>
     )
   }
