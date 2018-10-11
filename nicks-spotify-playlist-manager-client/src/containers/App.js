@@ -20,6 +20,7 @@ class App extends Component {
     }
     this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   handleSignupSubmit(event, data) {
@@ -57,6 +58,22 @@ class App extends Component {
         auth: Auth.isUserAuthenticated(),
   //      shouldGoToProfile: false
       }).catch(error => console.log(error))
+  }
+
+  handleLogout() {
+    fetch('/logout', {
+      method: 'DELETE',
+      body: JSON.stringify(data),
+      headers: {
+        token: Auth.getToken();
+        'Authorization': `Token ${Auth.getToken()}`
+      }
+    }).then(response => {
+      Auth.deauthenticateToken();
+      this.setState({
+        auth: Auth.isUserAuthenticated()
+      })
+    }).catch(error => console.log(error))
   }
 
   render() {
