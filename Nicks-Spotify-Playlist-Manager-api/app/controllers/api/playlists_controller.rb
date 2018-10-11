@@ -1,5 +1,5 @@
-class Api::PlaylistsController < ApplicationController
-
+class Api::PlaylistsController < ApiController
+  before_action :require_login, except: [:index, :show]
   before_action :set_playlist, only: [:show, :update, :destroy]
 
   def index
@@ -8,10 +8,11 @@ class Api::PlaylistsController < ApplicationController
 
   def create
     playlist = Playlist.new(playlist_params)
+    playlist.user = current_user
     if playlist.save
       render json: playlist
     else
-      render json: { message: playlist.errors }, status: 400
+      render json: { message: 'Could not create playlist!' }
     end
   end
 
