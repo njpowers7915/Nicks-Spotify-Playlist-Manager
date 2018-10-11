@@ -4,15 +4,16 @@ import React from 'react';
 //import { fetchTracks } from '../actions/TracksActions';
 import TrackComponent from './TrackComponent'
 
-const TracksList = ({tracks}) =>
-  if (this.props.tracks.length > 0) {
-    const tracks = this.props.tracks.map(track =>
-    <TrackComponent track={track} />)
-    return (
-      <div id="TracksList">
-        {tracks}
-      </div>
-    )
+const TracksList = (props) =>
+/*  this.props.tracks.map(track => <TrackComponent track={track} />);
+    render() {
+      return ( */
+        <div id="TracksList">
+          {this.props.tracks}
+        </div>
+/*      )
+}   */
+/*
   } else {
     return (
       <div id="TracksList">
@@ -21,6 +22,7 @@ const TracksList = ({tracks}) =>
     )
   }
 }
+*/
 /*
     debugger
     return(
