@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBar = () =>
-  <div>
+  <div className="NavBar">
     <h3>Welcome user! -- <Link to="/playlists">Home</Link> -- Sign Out</h3>
 
     {/* {<NavLink to="/" exact style={link}

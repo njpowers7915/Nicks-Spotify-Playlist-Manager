@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy'
 
     resources :users
-    get "/playlists", to: 'users#playlists'
+    get "/profile", to: 'users#playlists'
 
   end
 end

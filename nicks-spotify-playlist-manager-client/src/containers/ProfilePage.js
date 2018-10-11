@@ -1,3 +1,45 @@
+import React, {Component} from 'react'
+
+import Auth from '../modules/Auth'
+
+class ProfilePage extends Component {
+  constructor() {
+    super() = {
+      playlists: null,
+      playlistsLoaded: false
+    }
+  }
+
+  componentDidMount() {
+    fetch('/profile', {
+      method: 'GET',
+      headers: {
+        token: Auth.getToken(),
+        'Authorization': `Token ${Auth.getToken()}`,
+      }
+    }).then(response => response.json())
+      .then(response => {
+         this.setState({
+           playlists: response.playlists,
+           playlistsLoaded: true
+         })
+      }).catch(error => console.log(error))
+  }
+
+  render(){
+    return(
+      <div className="user-profile">
+      {(this.state.playlistsLoaded)
+        ? this.state.playlists.map(playlist => {
+          return <h1 key={playlist.id}>{playlist.name}</h1>
+        })
+        : <p>Loading...</p>}
+      </div>
+    )
+  }
+}
+
+/*
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
@@ -35,3 +77,4 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { fetchPlaylists })(Playlists);
+*/

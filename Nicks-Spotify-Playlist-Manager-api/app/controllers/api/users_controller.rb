@@ -6,7 +6,7 @@ class Api::UsersController < ApiController
     render json: { token: user.auth_token }
   end
 
-  def playlists
+  def profile
     user = User.find_by_auth_token!(request.headers[:token])
     user_playlists = Playlist.where(user_id: user.id)
     render json: {
