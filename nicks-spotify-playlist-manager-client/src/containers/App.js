@@ -17,7 +17,8 @@ class App extends Component {
     this.state = {
       auth: Auth.isUserAuthenticated()
     }
-    this.handleSignupSubmit = this.handleSignupSubmit.bind(this)
+    this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
   handleSignupSubmit(event, data) {
@@ -59,7 +60,9 @@ class App extends Component {
         <Route exact path="/playlists" render={() =>
         <PlaylistList />} />
         <Route exact path="/signup"
-          render={() => <SignupForm handleSignupSubmit />} />
+          render={() => <SignupForm handleSignupSubmit={this.handleSignupSubmit} />} />
+        <Route exact path="/login"
+          render={() => <LoginForm handleLoginSubmit={this.handleLoginSubmit} />} />
       </div>
     )
   }
