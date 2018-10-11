@@ -8,7 +8,6 @@ const PlaylistComponent = ({playlist}) =>
     <p>Description: {playlist.description}</p>
     <TracksList tracks={playlist.tracks} />
   </div>;
-  debugger
 
 
 const mapStateToProps = (state, ownProps) => {
