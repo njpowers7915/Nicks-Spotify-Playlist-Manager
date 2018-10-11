@@ -79,25 +79,32 @@ class App extends Component {
   render() {
     return(
       <div className="App">
-        <div className="nav">
+        <div className="navBar">
+          <Route path="/"
+            render={() => (this.state.auth)
+            ? <NavBar />
+            : null } />
           <span onClick={this.handleLogout}>Logout</span>
         </div>
+
         <Route exact path="/playlists" render={() =>
-        <PlaylistList />} />
+          <PlaylistList />} />
+
         <Route exact path="/"
           render={() => (this.state.auth)
             ? <Redirect to="/playlists" />
             : <WelcomeContainer />} />
+
         <Route exact path="/signup"
           render={() => (this.state.auth)
             ? <Redirect to="/playlists" />
             : <SignupForm handleSignupSubmit={this.handleSignupSubmit} />} />
+
         <Route exact path="/login"
           render={() => (this.state.auth)
             ? <Redirect to="/playlists" />
             : <LoginForm handleLoginSubmit={this.handleLoginSubmit} />} />
       </div>
-//      {(this.state.shouldGoToProfile) ? <Redirect to "/playlists" /> : ''}
     )
   }
 }
