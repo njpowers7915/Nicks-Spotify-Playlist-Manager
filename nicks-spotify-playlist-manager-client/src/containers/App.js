@@ -6,6 +6,7 @@ import Auth from '../modules/Auth'
 import './App.css';
 import NavBar from './NavBar'
 import PlaylistList  from '../components/PlaylistList'
+import SignupForm from '../components/SignupForm'
 import WelcomePage from '../components/Home'
 
 class App extends Component {
@@ -18,8 +19,19 @@ class App extends Component {
     this.handleSignupSubmit = this.handleSignupSubmit.bind(this)
   }
 
-  handleSignupSubmit(event) {
+  handleSignupSubmit(event, data) {
     event.preventDefault()
+    fetch('/users', {
+      method: 'POST',
+      body: JSON.stringify({
+        user: data
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(response => response.json())
+      .catch(error => console.log(error))
+
   }
 
   render() {

@@ -11,6 +11,7 @@ class SignupForm extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
   }
+
   handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
@@ -38,6 +39,7 @@ class SignupForm extends Component {
   }
 }
 
+export default SignupForm
 /*
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
