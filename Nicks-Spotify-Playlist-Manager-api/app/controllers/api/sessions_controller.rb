@@ -1,42 +1,32 @@
-class Api::SessionsController < ApplicationController
-  def new
-  end
+class Api::SessionsController < ApiController
+  skip_before_action :require_login, only: [:create], raise: false
 
   def create
-    if !!auth
-      @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.name = auth['info']['name']
-      u.email = auth['info']['email']
-      end
-      if @user = User.find_by(:email => auth['info']['email'])
-        session[:user_id] = @user.id
-        redirect_to @user
-      else
-        @user = User.create(:name => auth['info']['name'], :email => auth['info']['email'], :password => SecureRandom.hex)
-        session[:user_id] = @user.id
-        redirect_to @user
-      end
+    if user = User.validate_login(params[:username], params[:password])
+      allow_token_to_be_used_only_once_for(user)
+      send_token_for_valid_login_of(user)
     else
-      @user = User.find_by(:email => params[:email])
-      if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
-        redirect_to @user
-      else
-        flash[:danger] = 'Invalid name/password combination'
-        redirect_to login_path
-      end
+      render_unauthorized("Error with your login or password")
     end
   end
 
   def destroy
-    session[:user_id] = nil
-    redirect_to '/'
+    logout
+    head :ok
   end
 
   private
 
-  def auth
-    request.env['omniauth.auth']
+  def send_token_for_valid_login_of(user)
+    render json: { token: user.auth_token }
+  end
+
+  def allow_token_to_be_used_only_once_for(user)
+    user.regenerate_auth_token
+  end
+
+  def logout
+    current_user.invalidate_auth_token
   end
 
 end
