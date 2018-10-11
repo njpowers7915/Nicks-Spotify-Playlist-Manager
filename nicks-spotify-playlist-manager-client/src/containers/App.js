@@ -49,8 +49,10 @@ class App extends Component {
         'Content-Type': 'application/json'
       }
     }).then(response => response.json())
-      .then(response => {
-        console.log(response)
+    .then(response => {
+      Auth.authenticateToken(response.token)
+      this.setState({
+        auth: Auth.isUserAuthenticated()
       }).catch(error => console.log(error))
   }
 
