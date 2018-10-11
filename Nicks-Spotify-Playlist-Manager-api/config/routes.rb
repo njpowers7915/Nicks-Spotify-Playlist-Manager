@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     resources :tracks
     post 'signup', to: 'users#create'
     post 'login', to: 'sessions#create'
-    post 'logout', to: 'sessions#destroy'
+    delete 'logout', to: 'sessions#destroy'
+
+    resources :users
+    get "/playlists", to: 'users#playlists'
+
   end
 end

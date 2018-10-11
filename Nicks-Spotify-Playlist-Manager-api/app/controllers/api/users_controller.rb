@@ -1,50 +1,20 @@
-class Api::UsersController < ApplicationController
-  def new
-    @user = User.new
-  end
-
-  def index
-    @user = User.find_by_id(session[:user_id])
-    redirect_to '/'
-  end
+class Api::UsersController < ApiController
+  before_action :require_login, except: [:create]
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to @user
-    else
-      render 'new'
-    end
+    user = User.create!(user_params)
+    render json: { token: user.auth_token }
   end
 
-  def show
-    @team = Team.new
-    @message = params[:message] if params[:message]
-    @message ||= false
-
-    if User.find_by_id(session[:user_id])
-      @user = User.find_by_id(session[:user_id])
-      respond_to do |format|
-        format.html
-        format.json { render json: @user }
-      end
-    else
-      redirect_to '/'
-    end
-  end
-
-  def edit
-    @user = User.find_by_id(session[:user_id])
-  end
-
-  def update
-    @user = User.find_by_id(session[:user_id])
+  def playlists
+    user = User.find_by_auth_token!(request.headers[:token])
+    render json: { user: { username: user.username, email: user.email, name: user.name }}
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).except(:username, :password, :name, :email)
   end
+  
 end
