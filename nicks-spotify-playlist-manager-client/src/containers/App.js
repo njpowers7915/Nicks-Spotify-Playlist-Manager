@@ -79,6 +79,9 @@ class App extends Component {
   render() {
     return(
       <div className="App">
+        <div className="nav">
+          <span onClick={this.handleLogout}>Logout</span>
+        </div>
         <Route exact path="/playlists" render={() =>
         <PlaylistList />} />
         <Route exact path="/signup"
