@@ -9,7 +9,7 @@ import Logout from './Logout';
 import './App.css';
 import NavBar from './NavBar'
 import Playlists  from './Playlists'
-import WelcomePage from './WelcomePage'
+import WelcomePage from '../components/Home'
 
 class App extends Component {
   componentWillMount() {
@@ -19,6 +19,9 @@ class App extends Component {
   render() {
     return (
       <div>
+        { this.props.loggedIn ? (
+          <Route
+        )}
         <Switch>
           <Route path ='/' component={WelcomePage} />
           <Route path="/playlists" component={Playlists} />

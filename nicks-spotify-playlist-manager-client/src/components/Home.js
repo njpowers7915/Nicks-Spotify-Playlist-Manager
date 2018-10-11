@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-import Signup from "./Signup"
-import Login from "./Login"
+import Signup from "./SignupForm"
+import Login from "./LoginForm"
 
 class WelcomePage extends React.Component {
   constructor(props) {
