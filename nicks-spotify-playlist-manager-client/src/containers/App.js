@@ -74,6 +74,7 @@ class App extends Component {
         auth: Auth.isUserAuthenticated()
       })
     }).catch(error => console.log(error))
+    this.props.history.push("/")
   }
 
   render() {
@@ -82,9 +83,9 @@ class App extends Component {
         <div className="navBar">
           <Route path="/"
             render={() => (this.state.auth)
-            ? <NavBar />
+            ? <NavBar handleLogout = {this.handleLogout} />
             : null } />
-          <span onClick={this.handleLogout}>Logout</span>
+          { /* <span onClick={this.handleLogout}>Logout</span> */ }
         </div>
 
         <Route exact path="/playlists" render={() =>
@@ -104,6 +105,7 @@ class App extends Component {
           render={() => (this.state.auth)
             ? <Redirect to="/playlists" />
             : <LoginForm handleLoginSubmit={this.handleLoginSubmit} />} />
+
       </div>
     )
   }
