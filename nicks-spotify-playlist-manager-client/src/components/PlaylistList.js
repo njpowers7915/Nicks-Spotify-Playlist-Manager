@@ -52,7 +52,11 @@ class PlaylistList extends Component {
   render() {
     return (
       <div className="playlist-list">
-        {this.renderPlaylists()}
+        <Link to="/playlists/new">Create a new Playlist!</Link>
+        <h3>Playlists</h3>
+          <ul>
+            {this.renderPlaylists()}
+          </ul>
       </div>
     )
   }

@@ -6,20 +6,15 @@ import Auth from '../modules/Auth'
 import NewPlaylistForm from '../components/NewPlaylistForm'
 import PlaylistList from '../components/PlaylistList'
 import PlaylistComponent from '../components/PlaylistComponent'
+import { fetchPlaylists } from '../actions/PlaylistsActions'
 
 class ProfilePage extends Component {
-  constructor() {
-    super()
-    this.state = {
-      playlists: null,
-      playlistsLoaded: false
-    }
-  }
 
   componentDidMount() {
-    this.getUserPlaylists()
+    this.props.fetchPlaylists()
   }
 
+/*
   getUserPlaylists() {
     fetch('/profile', {
       method: 'GET',
@@ -35,6 +30,7 @@ class ProfilePage extends Component {
          })
       }).catch(error => console.log(error))
   }
+
 
   addPlaylist(event, data) {
     fetch('/playlists', {
@@ -54,9 +50,11 @@ class ProfilePage extends Component {
       }).catch(error => console.log(error))
   }
 
+*/
+
   render() {
 
-    const { match, playlists } = this.props;
+    const { match } = this.props;
 
     return(
       <div className="user-profile">
@@ -77,7 +75,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getUserPlaylists })(ProfilePage)
+export default connect(mapStateToProps, {fetchPlaylists})(ProfilePage)
 
 /*
 import React, {Component} from 'react';

@@ -4,13 +4,35 @@ import React from 'react';
 //import { fetchTracks } from '../actions/TracksActions';
 import TrackComponent from './TrackComponent'
 
-const TracksList = (props) =>
+class TracksList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      tracksList: this.props.tracks
+    }
+  }
+
+  renderTracks() {
+    return this.state.tracksList.map(track =>
+      <li key={track.id}>
+        <TrackComponent track={track} />
+      </li>
+    );
+  }
+
+  render() {
+    return (
+      <div className="playlist-list">
+        {this.renderTracks}
+      </div>
+    )
+  }
+}
+export default TracksList
 /*  this.props.tracks.map(track => <TrackComponent track={track} />);
     render() {
       return ( */
-        <div id="TracksList">
-          {this.props.tracks}
-        </div>
 /*      )
 }   */
 /*
@@ -38,5 +60,5 @@ const TracksList = (props) =>
 //    playlists: state.playlists
 //  }
 //}
-export default TracksList
+
 //export default connect(mapStateToProps, { fetchPlaylists })(PlaylistsList);

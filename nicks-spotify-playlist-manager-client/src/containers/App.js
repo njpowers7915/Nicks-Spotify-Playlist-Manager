@@ -90,8 +90,8 @@ class App extends Component {
 
         <Route path="/playlists"
           render={() => (this.state.auth)
-          ? <ProfilePage />
-          : <WelcomeContainer />} />
+            ? <Route path="/playlists" component={ProfilePage} />
+            : <WelcomeContainer />} />
 
         <Route exact path="/"
           render={() => (this.state.auth)
