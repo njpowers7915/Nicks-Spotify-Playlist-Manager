@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { Route, Redirect } from 'react-router-dom';
+//import { connect } from 'react-redux'
 import Auth from '../modules/Auth'
 
 import './App.css';
 import NavBar from './NavBar'
-import PlaylistList  from '../components/PlaylistList'
+import ProfilePage  from './ProfilePage'
 import SignupForm from '../components/SignupForm'
 import LoginForm from '../components/LoginForm'
 import WelcomeContainer from './WelcomeContainer'
@@ -25,7 +25,7 @@ class App extends Component {
 
   handleSignupSubmit(event, data) {
     event.preventDefault()
-    fetch('/users', {
+    fetch('http://localhost:3001/api/users', {
       method: 'POST',
       body: JSON.stringify({
         user: data
@@ -45,7 +45,7 @@ class App extends Component {
 
   handleLoginSubmit(event, data) {
     event.preventDefault()
-    fetch('/login', {
+    fetch('http://localhost:3001/api/login', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -56,12 +56,12 @@ class App extends Component {
         Auth.authenticateToken(response.token)
         this.setState({
           auth: Auth.isUserAuthenticated(),
-        }).catch(error => console.log(error))
-      })
+        })
+      }).catch(error => console.log(error))
     }
 
   handleLogout(data) {
-    fetch('/logout', {
+    fetch('http://localhost:3001/api/logout', {
       method: 'DELETE',
       body: JSON.stringify(data),
       headers: {
@@ -69,12 +69,12 @@ class App extends Component {
         'Authorization': `Token ${Auth.getToken()}`
       }
     }).then(response => {
-      Auth.deauthenticateToken();
+      Auth.deauthenticateUser();
       this.setState({
         auth: Auth.isUserAuthenticated()
       })
     }).catch(error => console.log(error))
-    this.props.history.push("/")
+//    this.props.history.push("/")
   }
 
   render() {
@@ -83,13 +83,15 @@ class App extends Component {
         <div className="navBar">
           <Route path="/"
             render={() => (this.state.auth)
-            ? <NavBar handleLogout = {this.handleLogout} />
+            ? <NavBar handleLogout={this.handleLogout} />
             : null } />
           { /* <span onClick={this.handleLogout}>Logout</span> */ }
         </div>
 
-        <Route exact path="/playlists" render={() =>
-          <PlaylistList />} />
+        <Route path="/playlists"
+          render={() => (this.state.auth)
+          ? <ProfilePage />
+          : <WelcomeContainer />} />
 
         <Route exact path="/"
           render={() => (this.state.auth)

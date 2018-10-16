@@ -10,7 +10,7 @@ class Api::UsersController < ApiController
     user = User.find_by_auth_token!(request.headers[:token])
     user_playlists = Playlist.where(user_id: user.id)
     render json: {
-      user: { username: user.username, email: user.email, name: user.name },
+      user: { username: user.username, email: user.email },
       playlists: user_playlists
     }
   end
@@ -18,7 +18,7 @@ class Api::UsersController < ApiController
   private
 
   def user_params
-    params.require(:user).except(:username, :password, :name, :email)
+    params.require(:user).except(:username, :password_digest, :email)
   end
 
 end

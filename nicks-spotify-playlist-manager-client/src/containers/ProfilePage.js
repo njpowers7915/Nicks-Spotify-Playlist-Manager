@@ -1,11 +1,16 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
 import Auth from '../modules/Auth'
 import NewPlaylistForm from '../components/NewPlaylistForm'
+import PlaylistList from '../components/PlaylistList'
+import PlaylistComponent from '../components/PlaylistComponent'
 
 class ProfilePage extends Component {
   constructor() {
-    super() = {
+    super()
+    this.state = {
       playlists: null,
       playlistsLoaded: false
     }
@@ -35,7 +40,7 @@ class ProfilePage extends Component {
     fetch('/playlists', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
         token: Auth.getToken(),
         'Authorization': `Token ${Auth.getToken()}`
       },
@@ -49,19 +54,30 @@ class ProfilePage extends Component {
       }).catch(error => console.log(error))
   }
 
-  render(){
+  render() {
+
+    const { match, playlists } = this.props;
+
     return(
       <div className="user-profile">
-        <NewPlaylistForm addPlaylist={this.addPlaylist} />
-        {(this.state.playlistsLoaded)
-          ? this.state.playlists.map(playlist => {
-            return <h1 key={playlist.id}>{playlist.name}</h1>
-          })
-          : <p>Loading...</p>}
+        <Switch>
+          <Route exact path={match.url} component={PlaylistList} />
+          <Route exact path={match.url + '/new'} component={NewPlaylistForm} />
+          <Route exact path={match.url + '/:playlistId'} component={PlaylistComponent} />
+        </Switch>
       </div>
+
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    playlists: state.playlists
+  }
+}
+
+export default connect(mapStateToProps, { getUserPlaylists })(ProfilePage)
 
 /*
 import React, {Component} from 'react';

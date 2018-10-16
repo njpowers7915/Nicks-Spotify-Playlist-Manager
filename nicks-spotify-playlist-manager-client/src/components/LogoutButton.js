@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-const LogoutButton = () =>
+const LogoutButton = ({ handleLogout }) =>
   <div className="LogoutButton">
-    <button click={() => this.props.handleLogout(this.state)}>Logout</button>
+    <button onClick={() => handleLogout(this.state)}>Logout</button>
   </div>
 
 export default LogoutButton

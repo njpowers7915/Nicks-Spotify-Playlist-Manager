@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 import { fetchPlaylists } from '../actions/PlaylistsActions';
 
 class PlaylistList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      playlistList: [],
       playlistListLoaded: false
     }
   }
-
+/*
   componentDidMount() {
     fetch('/playlists')
       .then(response => response.json())
@@ -23,37 +22,50 @@ class PlaylistList extends Component {
       }).catch(error => console.log(error))
     })
   }
+*/
+  componentDidMount() {
+    this.props.fetchPlaylists()
+  }
 
 
   renderPlaylists() {
-    return this.state.playlistList.map(playlist =>
-        <div className="playlist" key={playlist.id}>
-          <h3>{playlist.name}</h3>
-          <p>{playlist.description}</p>
-        </div>
-      );
-    }
-/*
-  const renderPlaylists = this.props.playlists.map(playlist =>
+    return this.props.playlists.map(playlist =>
       <li key={playlist.id}>
         <Link to={`/playlists/${playlist.id}`} playlist={playlist} >{playlist.attributes.name}</Link>
       </li>
-  );
+    );
+
+  }
+/*
+  const renderPlaylists() {
+    return this.props.playlists.map(playlist =>
+      <li key={playlist.id}>
+        <Link to={`/playlists/${playlist.id}`} playlist={playlist} >{playlist.attributes.name}</Link>
+      </li>
+    );
+    this.setState {
+      playlistListLoaded: true
+  }
 */
 
 
   render() {
     return (
       <div className="playlist-list">
-        {(this.state.playlistListLoaded)
-        ? this.renderPlaylists()
-        : <p>Loading...</p>}
+        {this.renderPlaylists()}
       </div>
     )
   }
 }
 
-export default PlaylistList
+const mapStateToProps = state => {
+  return {
+    playlists: state.playlists
+
+  }
+}
+
+export default connect(mapStateToProps, { fetchPlaylists })(PlaylistList)
 
 /*
 class PlaylistsList extends Component {
