@@ -6,7 +6,7 @@ function playlistsReducer(state = [], action) {
     case 'CREATE_PLAYLIST_SUCCESS':
       return state.concat(action.playlist);
 
-    case 'FETCH_PLAYLIST':
+    case 'FETCH_PLAYLIST_SUCCESS':
       return action.playlist;
 
     default:

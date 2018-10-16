@@ -10,6 +10,13 @@ const setPlaylists = playlists => {
   }
 }
 
+const setPlaylist = playlist => {
+  return {
+    type: 'FETCH_PLAYLIST_SUCCESS',
+    playlist
+  }
+}
+
 const addPlaylist = playlist => {
   return {
     type: 'CREATE_PLAYLIST_SUCCESS',
@@ -29,7 +36,16 @@ export const fetchPlaylists = () => {
 
 export const fetchPlaylist = id => {
   return dispatch => {
-    return fetch(`${API_URL}/playlists${id}`)
+    return fetch(`${API_URL}/playlists/${id}`)
+      .then(response => response.json())
+      .then(playlist => dispatch(setPlaylist(playlist.data)))
+      .catch(error => console.log(error));
+  }
+}
+/*
+export const fetchPlaylist = id => {
+  return dispatch => {
+    return fetch(`${API_URL}/playlists/${id}`)
       .then(response => response.json())
       .then(playlist => dispatch({
         type: 'FETCH_PLAYLIST',
@@ -37,7 +53,7 @@ export const fetchPlaylist = id => {
       }))
   }
 }
-
+*/
 export const createPlaylist = playlist => {
   return dispatch => {
     return fetch(`${API_URL}/playlists`, {

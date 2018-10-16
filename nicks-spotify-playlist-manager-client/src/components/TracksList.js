@@ -4,6 +4,28 @@ import React from 'react';
 //import { fetchTracks } from '../actions/TracksActions';
 import TrackComponent from './TrackComponent'
 
+const TracksList = ({tracks}) => {
+  return (
+    <div>
+      renderTracks
+    </div>
+  )
+}
+export default TracksList
+
+/*
+
+const renderTracks = tracks.map(track =>
+  <li key={track.id}>
+    <TrackComponent track={track} />
+  </li>
+)
+
+
+
+
+
+
 class TracksList extends React.Component {
   constructor(props) {
     super(props);
@@ -13,8 +35,11 @@ class TracksList extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.setState
+  }
+
   renderTracks() {
-    debugger
     return this.state.tracksList.map(track =>
       <li key={track.id}>
         <TrackComponent track={track} />
@@ -32,23 +57,6 @@ class TracksList extends React.Component {
   }
 }
 export default TracksList
-
-/*
-const TracksList = ({tracks}) => {
-  const renderTracks = tracks.map(track =>
-    <li key={track.id}>
-      <TrackComponent track={track} />
-    </li>
-  )
-
-  return (
-    <div>
-      {renderTracks}
-    </div>
-  )
-}
-export default TracksList
-
 
 
   this.props.tracks.map(track => <TrackComponent track={track} />);

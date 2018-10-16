@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import playlistsReducer from './playlistsReducer';
-//import songsReducer from './songsReducer';
+import tracksReducer from './tracksReducer';
 
 export default combineReducers({
-  playlists: playlistsReducer
+  playlists: playlistsReducer,
+  tracks: tracksReducer
 })
