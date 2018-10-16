@@ -25,19 +25,38 @@ class TracksList extends React.Component {
   render() {
     return (
       <div className="playlist-list">
-        {this.renderTracks}
+        {this.renderTracks()}
         TRACK 1
       </div>
     )
   }
 }
 export default TracksList
-/*  this.props.tracks.map(track => <TrackComponent track={track} />);
-    render() {
-      return ( */
-/*      )
-}   */
+
 /*
+const TracksList = ({tracks}) => {
+  const renderTracks = tracks.map(track =>
+    <li key={track.id}>
+      <TrackComponent track={track} />
+    </li>
+  )
+
+  return (
+    <div>
+      {renderTracks}
+    </div>
+  )
+}
+export default TracksList
+
+
+
+  this.props.tracks.map(track => <TrackComponent track={track} />);
+    render() {
+      return (
+      )
+}
+
   } else {
     return (
       <div id="TracksList">
@@ -46,8 +65,8 @@ export default TracksList
     )
   }
 }
-*/
-/*
+
+
     debugger
     return(
       <div>
@@ -56,7 +75,7 @@ export default TracksList
     )
   }
 }
-*/
+
 //const mapStateToProps = state => {
 //  return {
 //    playlists: state.playlists
@@ -64,3 +83,4 @@ export default TracksList
 //}
 
 //export default connect(mapStateToProps, { fetchPlaylists })(PlaylistsList);
+*/

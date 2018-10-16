@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
+
+//import { fetchPlaylist } from '../actions/PlaylistsActions';
+
 import TracksList from './TracksList'
+
 
 const PlaylistComponent = ({playlist}) =>
   <div key={playlist.id} className="PlaylistComponent">
@@ -11,6 +15,7 @@ const PlaylistComponent = ({playlist}) =>
 
 
 const mapStateToProps = (state, ownProps) => {
+  debugger
   const playlist = state.playlists.find(playlist => playlist.id === ownProps.match.params.playlistId)
   if (playlist) {
     return { playlist: {
