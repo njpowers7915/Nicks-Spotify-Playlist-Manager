@@ -33,8 +33,8 @@ export const fetchPlaylists = () => {
       .catch(error => console.log(error));
   }
 }
-
-export const fetchPlaylist = id => {
+/*
+export function fetchPlaylist(id) {
   return dispatch => {
     return fetch(`${API_URL}/playlists/${id}`)
       .then(response => response.json())
@@ -42,7 +42,7 @@ export const fetchPlaylist = id => {
       .catch(error => console.log(error));
   }
 }
-/*
+*/
 export const fetchPlaylist = id => {
   return dispatch => {
     return fetch(`${API_URL}/playlists/${id}`)
@@ -53,7 +53,7 @@ export const fetchPlaylist = id => {
       }))
   }
 }
-*/
+
 export const createPlaylist = playlist => {
   return dispatch => {
     return fetch(`${API_URL}/playlists`, {

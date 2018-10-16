@@ -54,12 +54,11 @@ class ProfilePage extends Component {
 
   render() {
 
-    const { match } = this.props;
-
+    const { match, playlists } = this.props;
     return(
       <div className="user-profile">
         <Switch>
-          <Route exact path={match.url} component={PlaylistList} />
+          <Route exact path={match.url} component={PlaylistList} playlists={playlists} />
           <Route exact path={match.url + '/new'} component={NewPlaylistForm} />
           <Route exact path={match.url + '/:playlistId'} component={PlaylistComponent} />
         </Switch>

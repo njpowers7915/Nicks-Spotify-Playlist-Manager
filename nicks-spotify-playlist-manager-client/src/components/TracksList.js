@@ -4,16 +4,71 @@ import React from 'react';
 //import { fetchTracks } from '../actions/TracksActions';
 import TrackComponent from './TrackComponent'
 
+class TracksList extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      tracks: ''
+    }
+  }
+
+  componentDidMount() {
+    this.setState({
+      tracks: this.props.tracks
+    })
+  }
+
+  renderTracks() {
+    return this.state.tracks.map(track =>
+      <li key={track.id}>
+        <TrackComponent track={track} />
+      </li>
+    )
+  }
+
+    render() {
+      return(
+      this.state.tracks ? <div>
+        {this.renderTracks()}
+      </div>
+      : <div>Loading ...</div>
+    )
+    }
+  }
+export default TracksList
+/*
 const TracksList = ({tracks}) => {
+  const renderTracks = tracks.map(track =>
+    <li key={track.id}>
+      <TrackComponent track={track} />
+    </li>
+  )
   return (
     <div>
       renderTracks
     </div>
   )
 }
-export default TracksList
 
-/*
+
+const renderPlaylists = playlists.map(playlist =>
+  <li key={playlist.id}>
+    <Link style={{marginRight: '12px'}}
+      key={playlist.id}
+      to={`/playlists/${playlist.id}`} >{playlist.attributes.name}</Link>
+  </li>
+)
+
+return (
+  <div>
+    {renderPlaylists}
+  </div>
+)
+}
+
+export default PlaylistList;
+
+
 
 const renderTracks = tracks.map(track =>
   <li key={track.id}>

@@ -3,6 +3,25 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPlaylists } from '../actions/PlaylistsActions';
 
+const PlaylistList = ({playlists}) => {
+  const renderPlaylists = playlists.map(playlist =>
+    <li key={playlist.id}>
+      <Link style={{marginRight: '12px'}}
+        key={playlist.id}
+        to={`/playlists/${playlist.id}`} >{playlist.attributes.name}</Link>
+    </li>
+  )
+
+  return (
+    <div>
+      {renderPlaylists}
+    </div>
+  )
+}
+
+export default PlaylistList;
+
+/*
 class PlaylistList extends Component {
   constructor(props) {
     super(props);
@@ -12,9 +31,9 @@ class PlaylistList extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.fetchPlaylists()
-  }
+//  componentDidMount() {
+//    this.props.fetchPlaylists()
+//  }
 
   renderPlaylists() {
     return this.props.playlists.map(playlist =>
@@ -26,7 +45,7 @@ class PlaylistList extends Component {
     );
 
   }
-/*
+
   const renderPlaylists() {
     return this.props.playlists.map(playlist =>
       <li key={playlist.id}>
@@ -36,7 +55,7 @@ class PlaylistList extends Component {
     this.setState {
       playlistListLoaded: true
   }
-*/
+
 
 
   render() {
@@ -60,3 +79,4 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { fetchPlaylists })(PlaylistList)
+*/

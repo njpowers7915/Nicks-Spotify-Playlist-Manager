@@ -3,7 +3,7 @@ import React from 'react';
 
 const TrackComponent = ({track}) =>
   <div key={track.id} className="TrackComponent">
-    <li>{track.name} -- {track.artist}</li>
+    {track.name} -- {track.artist}
   </div>;
 
 export default TrackComponent;
