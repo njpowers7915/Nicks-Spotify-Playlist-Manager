@@ -11,27 +11,17 @@ class PlaylistList extends Component {
       playlistListLoaded: false
     }
   }
-/*
-  componentDidMount() {
-    fetch('/playlists')
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          playlistList: response.playlists,
-          playlistListLoaded: true
-      }).catch(error => console.log(error))
-    })
-  }
-*/
+
   componentDidMount() {
     this.props.fetchPlaylists()
   }
 
-
   renderPlaylists() {
     return this.props.playlists.map(playlist =>
       <li key={playlist.id}>
-        <Link to={`/playlists/${playlist.id}`} playlist={playlist} >{playlist.attributes.name}</Link>
+        <Link style={{marginRight: '12px'}}
+          key={playlist.id}
+          to={`/playlists/${playlist.id}`} >{playlist.attributes.name}</Link>
       </li>
     );
 
@@ -70,40 +60,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { fetchPlaylists })(PlaylistList)
-
-/*
-class PlaylistsList extends Component {
-
-  componentDidMount() {
-    this.props.fetchPlaylists()
-  }
-
-  render () {
-
-    const renderPlaylists = this.props.playlists.map(playlist =>
-        <li key={playlist.id}>
-          <Link to={`/playlists/${playlist.id}`} playlist={playlist} >{playlist.attributes.name}</Link>
-        </li>
-    );
-
-
-    return (
-      <div className="playlistList">
-        <Link to="/playlists/new">Create a new Playlist!</Link>
-        <h3>Playlists</h3>
-          <ul>
-          {renderPlaylists}
-          </ul>
-      </div>
-    );
-  }
-};
-
-const mapStateToProps = state => {
-  return {
-    playlists: state.playlists
-  }
-}
-
-export default connect(mapStateToProps, { fetchPlaylists })(PlaylistsList);
-*/

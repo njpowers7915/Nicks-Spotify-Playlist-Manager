@@ -14,6 +14,7 @@ class TracksList extends React.Component {
   }
 
   renderTracks() {
+    debugger
     return this.state.tracksList.map(track =>
       <li key={track.id}>
         <TrackComponent track={track} />
@@ -25,6 +26,7 @@ class TracksList extends React.Component {
     return (
       <div className="playlist-list">
         {this.renderTracks}
+        TRACK 1
       </div>
     )
   }
