@@ -24,13 +24,13 @@ class App extends Component {
     )
     const loggedIn = (
       <div>
+        <NavBar />
         <Route path="/playlists" component={ProfilePage} />
       </div>
     )
   return (
     <Router>
       <div className="App">
-        <Navigation isAuthenticated={isAuthenticated} />
         <div id="main-div">
           {isAuthenticated ? loggedIn : loggedOut}
         </div>

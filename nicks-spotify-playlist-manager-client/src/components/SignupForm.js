@@ -1,41 +1,45 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { signup } from '../actions/authActions'
 
-class SignupForm extends Component {
+class SignupForm extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
-      user : {
-        username: '',
-        email: '',
-        password: '',
-      },
-      submitted: false,
+      username: '',
+      email: '',
+      password: '',
     }
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleOnChange = (event) => {
     const { name, value } = event.target;
-    const { user } = this.state;
     this.setState({
-      user: {
-        ...user,
-        [name]: value
-      }
+      [name]: value
     });
+  }
+
+  handleOnSignup = (event) => {
+    event.preventDefault();
+    if (this.props.signup(this.state)) {
+      this.props.history.push('/playlists')
+    } else {
+      window.alert("Unable to signup. Please try again!")
+    }
   }
 
   render() {
     return(
       <div className="signupForm">
-        <form onSubmit={(event) => this.props.handleSignupSubmit(event, this.state)}>
-          <input type="text" name="username" placeholder="username"
-            value={this.state.username} onChange={this.handleChange} />
-          <input type="password" name="password" placeholder="password"
-            value={this.state.password} onChange={this.handleChange} />
+        <form onSubmit={this.handleOnSignup}>
+          <input type="text" name="username" id="username"
+            value={this.state.username} onChange={this.handleOnChange} />
+          <input type="password" name="password" id="password"
+            value={this.state.password} onChange={this.handleOnChange} />
           <input type="email" name="email" placeholder="email"
-            value={this.state.email} onChange={this.handleChange} />
+            value={this.state.email} onChange={this.handleOnChange} />
 
           <input type="submit" value="Register!" />
         </form>
@@ -44,7 +48,7 @@ class SignupForm extends Component {
   }
 }
 
-export default SignupForm
+export default SignupForm = withRouter(connect(null, {signup})(SignupForm));
 /*
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
