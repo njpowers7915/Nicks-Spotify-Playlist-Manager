@@ -1,5 +1,5 @@
 class Api::PlaylistsController < ApiController
-  before_action :require_login, except: [:index, :show]
+  #before_action :require_login, except: [:index, :show]
   before_action :set_playlist, only: [:show, :update, :destroy]
 
   def index
