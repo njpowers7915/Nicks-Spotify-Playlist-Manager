@@ -1,23 +1,22 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from './components/App';
-import HomePage from './components/home/HomePage';
-import CatsPage from './components/cats/CatsPage';
-import AboutPage from './components/about/AboutPage';
-import CatPage from './components/cats/CatPage';
-import NewCatPage from './components/cats/NewCatPage';
-import LogInPage from './components/LogInPage';
+import App from './containers/App';
+import WelcomeContainer from './containers/WelcomeContainer';
+import ProfilePage from './containers/ProfilePage';
+import PlaylistComponent from './containers/PlaylistComponent';
+import NewPlaylistForm from './components/NewPlaylistForm';
+import LoginForm from './components/LoginForm';
 import auth from './auth/authenticator';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
-    <Route path="/login" component={LogInPage} />
-    <Route path="/cats" component={CatsPage} onEnter={requireAuth}>
-      <Route path="/cats/new" component={NewCatPage} />
-      <Route path="/cats/:id" component={CatPage} />
+    <IndexRoute component={WelcomeContainer} />
+    <Route path="/login" component={LoginForm} />
+    <Route path="/signup" component={SignupForm} />
+    <Route path="/playlists" component={ProfilePage} onEnter={requireAuth}>
+      <Route path="/playlists/new" component={NewPlaylistForm} />
+      <Route path="/playlists/:id" component={PlaylistComponent} />
     </Route>
-    <Route path="/about" component={AboutPage} />
   </Route>
 );
 
