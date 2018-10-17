@@ -1,15 +1,55 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-//import { connect } from 'react-redux'
-import Auth from '../modules/Auth'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+//import Auth from '../modules/Auth'
 
-import './App.css';
+
 import NavBar from './NavBar'
 import ProfilePage  from './ProfilePage'
 import SignupForm from '../components/SignupForm'
 import LoginForm from '../components/LoginForm'
 import WelcomeContainer from './WelcomeContainer'
+import './App.css';
 
+class App extends Component {
+
+  render() {
+    const{isAuthenticated, user} = this.props
+    const loggedOut = (
+      <div>
+        <Route exact path="/" component={WelcomeContainer} />
+        <Route path="/signup" component={SignupForm} />
+        <Route path="/login" component={LoginForm} />
+      </div>
+    )
+    const loggedIn = (
+      <div>
+        <Route path="/playlists" component={ProfilePage} />
+      </div>
+    )
+  return (
+    <Router>
+      <div className="App">
+        <Navigation isAuthenticated={isAuthenticated} />
+        <div id="main-div">
+          {isAuthenticated ? loggedIn : loggedOut}
+        </div>
+      </div>
+    </Router>
+  )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.currentUser
+  }
+}
+
+export default connect(mapStateToProps, {})(App)
+
+/*
 class App extends Component {
   constructor() {
     super()
@@ -85,7 +125,7 @@ class App extends Component {
             render={() => (this.state.auth)
             ? <NavBar handleLogout={this.handleLogout} />
             : null } />
-          { /* <span onClick={this.handleLogout}>Logout</span> */ }
+           /* <span onClick={this.handleLogout}>Logout</span>
         </div>
 
         <Route path="/playlists"
@@ -114,28 +154,4 @@ class App extends Component {
 }
 
 export default App
-
-/*
-class App extends Component {
-
-  componentWillMount() {
-    this.props.actions.loadUserPlaylists();
-  }
-
-  render() {
-    return (
-      <div className="App">
-        { this.props.loggedIn ? (
-          <Route
-        )}
-        <Switch>
-          <Route path ='/' component={WelcomePage} />
-          <Route path="/playlists" component={Playlists} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-        </Switch>
-      </div>
-    )
-  }
-}
 */
