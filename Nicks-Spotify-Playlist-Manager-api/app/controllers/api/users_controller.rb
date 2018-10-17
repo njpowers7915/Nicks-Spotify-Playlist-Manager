@@ -18,7 +18,7 @@ class Api::UsersController < ApiController
   private
 
   def user_params
-    params.require(:user).except(:username, :password_digest, :email)
+    params.require(:user).except(:username, :password, :email)
   end
 
 end
