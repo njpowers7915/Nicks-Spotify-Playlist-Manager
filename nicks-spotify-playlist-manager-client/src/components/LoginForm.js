@@ -1,68 +1,66 @@
 import React, from 'react';
 //import TextInput from './common/TextInput';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as sessionActions from '../actions/sessionActions';
+import {withRouter} from 'react-router-dom';
+
+import { authenticate } from '../actions/authActions';
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      credentials: {
-        username: '',
-        password: ''
-        }
-      }
-    this.onChange = this.onChange.bind(this)
-    this.onSave = this.onSave.bind(this)
+      username: '',
+      password: ''
+    }
   }
 
-  onChange(event) {
-    onst field = event.target.name;
-    const credentials = this.state.credentials;
-    credentials[field] = event.target.value;
-    return this.setState({credentials: credentials});
+  handleOnChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   }
 
-  onSave(event) {
+  handleOnLogin = (event) => {
     event.preventDefault();
-    this.props.actions.loginUser(this.state.credentials);
+    if (this.props.authenticate(this.state)) {
+      this.props.history.push('/playlists')
+    } else {
+      window.alert("Please try again!")
+    }
   }
 
   render() {
     return (
-      <div>
-        <form>
+      <div id="login">
+        <h3>Log In</h3>
+        <form onSubmit={this.handleOnLogin}>
           <TextInput
             name="username"
-            label="username"
-            value={this.state.credentials.username}
-            onChange={this.onChange}/>
+            id="username"
+            type="text"
+            value={this.state.username}
+            onChange={this.handleOnChange}/>
 
           <TextInput
             name="password"
-            label="password"
+            id="password"
             type="password"
-            value={this.state.credentials.password}
-            onChange={this.onChange}/>
+            value={this.state.password}
+            onChange={this.handleOnChange}/>
 
           <input
             type="submit"
-            value="Login!"
-            onClick={this.onSave}/>
-            {" "}
+            value="Log In"
+          />
         </form>
       </div>
-  );
+    );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(sessionActions, dispatch)
-  }
-}
-export default connect(null, mapDispatchToProps)(LoginForm)
+export default LoginForm = withRouter(connect(null, {authenticate})(LoginForm))
 
 /*
 import React, { Component } from 'react';
