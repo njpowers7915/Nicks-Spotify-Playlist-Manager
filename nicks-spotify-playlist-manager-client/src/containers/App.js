@@ -25,7 +25,7 @@ class App extends Component {
 
   handleSignupSubmit(event, data) {
     event.preventDefault()
-    fetch('http://localhost:3001/api/users', {
+    fetch('http://localhost:3001/api/signup', {
       method: 'POST',
       body: JSON.stringify({
         user: data
@@ -38,7 +38,7 @@ class App extends Component {
         Auth.authenticateToken(response.token)
         this.setState({
           auth: Auth.isUserAuthenticated(),
-//          shouldGoToProfile: true
+          shouldGoToProfile: true
         })
       }).catch(error => console.log(error))
   }

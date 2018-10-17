@@ -1,6 +1,10 @@
 class Api::UsersController < ApiController
   before_action :require_login, except: [:create]
 
+  def new
+    @user = User.new
+  end
+  
   def create
     user = User.create!(user_params)
     render json: { token: user.auth_token }
@@ -18,7 +22,7 @@ class Api::UsersController < ApiController
   private
 
   def user_params
-    params.require(:user).except(:username, :password, :email)
+    params.require(:user).except(:username, :email, :password)
   end
 
 end
