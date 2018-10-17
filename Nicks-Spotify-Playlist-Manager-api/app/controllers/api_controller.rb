@@ -1,26 +1,34 @@
 class ApiController < ApplicationController
+  before_action :authenticate
 
-  def require_login
-    authenticate_token || render_unauthorized("Access denied")
+  def logged_in?
+    !!current_user
   end
 
   def current_user
-    @current_user ||= authenticate_token
+    if auth_present?
+      user = User.find(auth["user"])
+      if user
+        @current_user ||= user
+      end
+    end
   end
 
-  protected
-
-  def render_unauthorized(message)
-    errors = { errors: [ detail: message ] }
-    render json: errors, status: :unauthorized
+  def authenticate
+    render json: {error: "unauthorized"}, status: 404 unless logged_in?
   end
 
   private
 
-  def authenticate_token
-    authenticate_with_http_token do | token, options |
-      User.find_by(auth_token: token)
+    def token
+      request.env["HTTP_AUTHORIZATION"].scan(/Bearer (.*)$/).flatten.last
     end
-  end
 
+    def auth
+      Auth.decode(token)
+    end
+
+    def auth_present?
+      !!request.env.fetch("HTTP_AUTHORIZATION", "").scan(/Bearer/).flatten.first
+    end
 end

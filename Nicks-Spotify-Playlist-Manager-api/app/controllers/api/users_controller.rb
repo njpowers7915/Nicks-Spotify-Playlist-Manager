@@ -1,13 +1,24 @@
 class Api::UsersController < ApiController
-  before_action :require_login, except: [:create]
+  before_action :authenticate, except: [:create]
 
   def new
     @user = User.new
   end
-  
+
+  def show
+    render json: User.find(params[:id])
+  end
+
   def create
-    user = User.create!(user_params)
-    render json: { token: user.auth_token }
+    user = User.new(user_params)
+    if user.save
+      render json: {}, status: 200
+    else
+      render json: {
+        error: "Could not create user",
+        status: 422
+      }, status: 422
+    end
   end
 
   def profile

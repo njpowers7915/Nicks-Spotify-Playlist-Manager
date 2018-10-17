@@ -1,12 +1,25 @@
 class Api::SessionsController < ApiController
-  skip_before_action :require_login, only: [:create], raise: false
+  skip_before_action :authenticate, only: [:create]
+
+#  def create
+#    if user = User.validate_login(params[:username], params[:password])
+#      allow_token_to_be_used_only_once_for(user)
+#      send_token_for_valid_login_of(user)
+#    else
+#      render_unauthorized("Error with your login or password")
+#    end
+#  end
 
   def create
-    if user = User.validate_login(params[:username], params[:password])
-      allow_token_to_be_used_only_once_for(user)
-      send_token_for_valid_login_of(user)
+    user = User.find_by(email: auth_params[:email])
+    if user && user.authenticate(auth_params[:password])
+      jwt = Auth.issue({user: user.id})
+      render json: {jwt: jwt}
     else
-      render_unauthorized("Error with your login or password")
+      render json: {:errors=>
+        [{:detail=>"incorrect email or password",
+          :source=>{:pointer=>"user/err_type"}}
+        ]}, status: 404
     end
   end
 
@@ -14,6 +27,14 @@ class Api::SessionsController < ApiController
     logout
     head :ok
   end
+
+  private
+    def auth_params
+      params.require(:auth).permit(:email, :password)
+    end
+end
+
+
 
   private
 
