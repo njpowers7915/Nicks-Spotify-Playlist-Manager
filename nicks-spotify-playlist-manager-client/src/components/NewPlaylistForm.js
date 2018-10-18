@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 //import { updatePlaylistFromData } from '../actions/playlistFormActions'
 import { createPlaylist } from '../actions/PlaylistsActions'
-import Auth from '../modules/Auth'
+//import Auth from '../modules/Auth'
 
 class NewPlaylistForm extends Component {
 

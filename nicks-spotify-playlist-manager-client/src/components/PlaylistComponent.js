@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { fetchPlaylist } from '../actions/PlaylistsActions';
+//import { fetchPlaylist } from '../actions/PlaylistsActions';
 
 import TracksList from './TracksList'
 

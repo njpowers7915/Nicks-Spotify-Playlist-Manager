@@ -36,6 +36,16 @@ class App extends Component {
             : null } />
         </div>
 
+        <Route path="/playlists"
+          render={() => (this.state.auth)
+            ? <Route path="/playlists" component={ProfilePage} />
+            : <WelcomeContainer />} />
+
+        <Route exact path="/"
+          render={() => (this.state.auth)
+            ? <Redirect to="/playlists" />
+            : <WelcomeContainer />} />
+
         <Route exact path="/signup"
           render={() => (this.state.auth)
             ? <Redirect to="/playlists" />

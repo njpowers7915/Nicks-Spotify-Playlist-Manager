@@ -1,28 +1,28 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { fetchPlaylists, deletePlaylist } from '../actions/PlaylistsActions';
+import { fetchPlaylists } from '../actions/PlaylistsActions';
 
-import Auth from '../modules/Auth'
+//import Auth from '../modules/Auth'
 import NewPlaylistForm from '../components/NewPlaylistForm'
 import PlaylistList from '../components/PlaylistList'
 import PlaylistComponent from '../components/PlaylistComponent'
 
 class ProfilePage extends Component {
+/*
   constructor(props) {
     super()
     this.state = {
       playlists: props.playlistState.playlists
     }
   }
-
+*/
   componentDidMount() {
     this.props.fetchPlaylists()
   }
 
   render() {
-    const playlists = this.state.playlists;
-    const { match } = this.props;
+    const { match, playlists } = this.props;
     return(
       <div className="user-profile">
         <Switch>
