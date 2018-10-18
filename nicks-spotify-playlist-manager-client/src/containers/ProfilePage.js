@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import { Route, withRouter, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { fetchPlaylists, deletePlaylist } from '../actions/PlaylistsActions';
 
 import Auth from '../modules/Auth'
@@ -20,6 +20,31 @@ class ProfilePage extends Component {
     this.props.fetchPlaylists()
   }
 
+  render() {
+    const playlists = this.state.playlists;
+    const { match } = this.props;
+    return(
+      <div className="user-profile">
+        <Switch>
+          <Route exact path={match.url} component={PlaylistList} playlists={playlists} />
+          <Route exact path={match.url + '/new'} component={NewPlaylistForm} />
+          <Route exact path={match.url + '/:playlistId'} component={PlaylistComponent} />
+        </Switch>
+      </div>
+      )
+    }
+  }
+
+  const mapStateToProps = state => {
+    return {
+      playlists: state.playlists
+    }
+  }
+
+  export default connect(mapStateToProps, {fetchPlaylists})(ProfilePage)
+
+
+/*
   componentDidUpdate(prevProps, prevState) {
     if (this.props.playlistState.playlists !== prevProps.playlistState.playlists) {
       this.setState({
@@ -36,6 +61,7 @@ class ProfilePage extends Component {
   }
 
   render() {
+
     const playlists = this.state.playlists;
     const {match} = this.props
     const playlistsDiv = (
@@ -70,7 +96,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-/*
+
   getUserPlaylists() {
     fetch('/profile', {
       method: 'GET',

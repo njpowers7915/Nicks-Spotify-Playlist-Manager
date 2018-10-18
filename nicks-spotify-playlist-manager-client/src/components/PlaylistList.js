@@ -1,8 +1,28 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { fetchPlaylists } from '../actions/PlaylistsActions';
+//import { connect } from 'react-redux';
+//import { fetchPlaylists } from '../actions/PlaylistsActions';
 
+const PlaylistList = ({playlists}) => {
+  const renderPlaylists = playlists.map(playlist =>
+    <li key={playlist.id}>
+      <Link style={{marginRight: '12px'}}
+        key={playlist.id}
+        to={`/playlists/${playlist.id}`} >{playlist.attributes.name}</Link>
+    </li>
+  )
+
+  return (
+    <div>
+      {renderPlaylists}
+    </div>
+  )
+}
+
+export default PlaylistList;
+
+
+/*
 class PlaylistList extends Component {
   constructor(props) {
     super(props);
@@ -44,3 +64,4 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { fetchPlaylists })(PlaylistList)
+*/
