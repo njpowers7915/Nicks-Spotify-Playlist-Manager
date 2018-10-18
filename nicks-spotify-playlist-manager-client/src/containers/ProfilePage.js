@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import { fetchPlaylists, deletePlaylist } from '../actions/playlistActions';
+import { fetchPlaylists, deletePlaylist } from '../actions/PlaylistActions';
 
 import Auth from '../modules/Auth'
 import NewPlaylistForm from '../components/NewPlaylistForm'
