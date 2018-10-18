@@ -24,14 +24,14 @@ class Api::UsersController < ApiController
     @user.delete
   end
 
-#  def profile
-#    user = User.find_by_auth_token!(request.headers[:token])
-#    user_playlists = Playlist.where(user_id: user.id)
-#    render json: {
-#      user: { username: user.username, email: user.email },
-#      playlists: user_playlists
-#    }
-#  end
+  def profile
+    user = User.find_by_auth_token!(request.headers[:token])
+    user_playlists = Playlist.where(user_id: user.id)
+    render json: {
+      user: { username: user.username, email: user.email },
+      playlists: user_playlists
+    }
+  end
 
   private
 

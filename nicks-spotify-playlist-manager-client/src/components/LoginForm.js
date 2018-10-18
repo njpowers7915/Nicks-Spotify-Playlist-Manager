@@ -1,4 +1,4 @@
-import React, from 'react';
+import React from 'react';
 //import TextInput from './common/TextInput';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
@@ -36,14 +36,14 @@ class LoginForm extends React.Component {
       <div id="login">
         <h3>Log In</h3>
         <form onSubmit={this.handleOnLogin}>
-          <TextInput
+          <input
             name="username"
             id="username"
             type="text"
             value={this.state.username}
             onChange={this.handleOnChange}/>
 
-          <TextInput
+          <input
             name="password"
             id="password"
             type="password"

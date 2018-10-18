@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import { fetchPlaylists, deletePlaylist } from '../actions/PlaylistActions';
+import { fetchPlaylists, deletePlaylist } from '../actions/PlaylistsActions';
 
 import Auth from '../modules/Auth'
 import NewPlaylistForm from '../components/NewPlaylistForm'
@@ -37,6 +37,7 @@ class ProfilePage extends Component {
 
   render() {
     const playlists = this.state.playlists;
+    const {match} = this.props
     const playlistsDiv = (
       <div id="playlists">
         <Switch>

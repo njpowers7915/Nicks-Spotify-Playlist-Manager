@@ -5,10 +5,10 @@ import { logout } from '../actions/authActions'
 //import LogoutButton from '../components/LogoutButton'
 
 class NavBar extends React.Component {
-  handleLogout = (event) = {
+  handleLogout = (event) => {
     event.preventDefault();
     this.props.logout();
-    this.props.history.push('/')
+    this.props.history.push('/');
   }
 
   render() {
