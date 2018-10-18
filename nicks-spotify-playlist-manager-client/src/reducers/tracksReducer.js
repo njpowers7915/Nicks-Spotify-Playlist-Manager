@@ -13,5 +13,4 @@ function tracksReducer(state = [], action) {
        return state;
     }
 }
-
 export default tracksReducer
