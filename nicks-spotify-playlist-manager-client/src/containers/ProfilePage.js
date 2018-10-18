@@ -1,18 +1,73 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
+import { fetchPlaylists, deletePlaylist } from '../actions/playlistActions';
 
 import Auth from '../modules/Auth'
 import NewPlaylistForm from '../components/NewPlaylistForm'
 import PlaylistList from '../components/PlaylistList'
 import PlaylistComponent from '../components/PlaylistComponent'
-import { fetchPlaylists } from '../actions/PlaylistsActions'
 
 class ProfilePage extends Component {
+  constructor(props) {
+    super()
+    this.state = {
+      playlists: props.playlistState.playlists
+    }
+  }
 
   componentDidMount() {
     this.props.fetchPlaylists()
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.playlistState.playlists !== prevProps.playlistState.playlists) {
+      this.setState({
+        playlists: this.props.playlistState.playlists
+      })
+    }
+  }
+
+  handleDeletePlaylist = (event) => {
+    event.preventDefault()
+    const playlistId = event.target.dataset.id
+    this.propps.deletePlaylist(playlistId)
+    this.props.history.push('/playlists')
+  }
+
+  render() {
+    const playlists = this.state.playlists;
+    const playlistsDiv = (
+      <div id="playlists">
+        <Switch>
+          <Route exact path={match.url} component={PlaylistList} playlists={playlists} />
+          <Route exact path={match.url + '/new'} component={NewPlaylistForm} />
+          <Route exact path={match.url + '/:playlistId'}
+            render={ (props) =>
+              <PlaylistComponent
+                playlists={playlists}
+                handleDeletePlaylist={this.handleDeletePlaylist}
+                userId={this.props.userId}
+                {...props} />} />
+        </Switch>
+      </div>
+    )
+    const loading = <p>Loading playlists...</p>
+    return (
+      <div>
+        { this.props.loadingPlaylists ? loading : playlistsDiv }
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    playlistState: state.playlists,
+    loadingPlaylists: state.playlists.loading,
+    userId: state.auth.currentUser.id
+  }
+}
 
 /*
   getUserPlaylists() {
@@ -50,7 +105,7 @@ class ProfilePage extends Component {
       }).catch(error => console.log(error))
   }
 
-*/
+
 
   render() {
 
