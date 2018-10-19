@@ -1,4 +1,4 @@
-class Api::TracksController < ApiController
+class Api::TracksController < ApplicationController
 
   before_action :set_track, only: [:show, :update]
 

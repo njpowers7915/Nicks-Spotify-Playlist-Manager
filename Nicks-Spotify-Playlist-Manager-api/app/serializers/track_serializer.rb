@@ -1,4 +1,4 @@
 class TrackSerializer < ApplicationSerializer
-  attributes :name, :artist, :spotify_id, :spotify_uri
-  
+  attributes :id, :name, :artist, :spotify_id, :spotify_uri
+
 end
