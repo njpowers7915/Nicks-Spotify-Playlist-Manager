@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 //import { connect } from 'react-redux'
-//import Auth from '../modules/Auth'
+import Auth from '../modules/Auth'
 
 
 import NavBar from './NavBar'
@@ -24,8 +24,26 @@ class App extends Component {
     }
 //    this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
 //    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-//    this.handleLogout = this.handleLogout.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
+
+  handleLogout(data) {
+    fetch('http://localhost:3001/api/logout', {
+      method: 'DELETE',
+      body: JSON.stringify(data),
+      headers: {
+        token: Auth.getToken(),
+        'Authorization': `Token ${Auth.getToken()}`
+      }
+    }).then(response => {
+      Auth.deauthenticateUser();
+      this.setState({
+        auth: Auth.isUserAuthenticated()
+      })
+    }).catch(error => console.log(error))
+//    this.props.history.push("/")
+  }
+
   render() {
     return(
       <div className="App">
@@ -101,20 +119,5 @@ export default App
         }).catch(error => console.log(error))
       }
 
-    handleLogout(data) {
-      fetch('http://localhost:3001/api/logout', {
-        method: 'DELETE',
-        body: JSON.stringify(data),
-        headers: {
-          token: Auth.getToken(),
-          'Authorization': `Token ${Auth.getToken()}`
-        }
-      }).then(response => {
-        Auth.deauthenticateUser();
-        this.setState({
-          auth: Auth.isUserAuthenticated()
-        })
-      }).catch(error => console.log(error))
-  //    this.props.history.push("/")
-    }
+
 */
