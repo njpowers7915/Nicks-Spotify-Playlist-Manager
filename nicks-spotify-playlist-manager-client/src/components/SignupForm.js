@@ -1,17 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { signup } from '../actions/authActions'
+//import { connect } from 'react-redux';
+//import { withRouter } from 'react-router-dom';
+//import { signup } from '../actions/authActions'
 
 class SignupForm extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
 
     this.state = {
       username: '',
       email: '',
       password: '',
     }
+    this.handleOnChange = this.handleOnChange.bind(this)
   }
 
   handleOnChange = (event) => {
@@ -48,7 +49,7 @@ class SignupForm extends React.Component {
   }
 }
 
-export default SignupForm = withRouter(connect(null, {signup})(SignupForm));
+export default withRouter(connect(null, {signup})(SignupForm));
 /*
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';

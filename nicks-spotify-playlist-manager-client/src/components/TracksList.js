@@ -3,7 +3,7 @@ import React from 'react';
 //import { connect } from 'react-redux';
 //import { fetchTracks } from '../actions/TracksActions';
 import TrackComponent from './TrackComponent'
-
+/*
 class TracksList extends React.Component {
   constructor() {
     super()
@@ -36,7 +36,7 @@ class TracksList extends React.Component {
     }
   }
 export default TracksList
-/*
+*/
 const TracksList = ({tracks}) => {
   const renderTracks = tracks.map(track =>
     <li key={track.id}>
@@ -45,12 +45,12 @@ const TracksList = ({tracks}) => {
   )
   return (
     <div>
-      renderTracks
+      {renderTracks}
     </div>
   )
 }
 
-
+/*
 const renderPlaylists = playlists.map(playlist =>
   <li key={playlist.id}>
     <Link style={{marginRight: '12px'}}

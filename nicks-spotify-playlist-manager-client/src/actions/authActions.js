@@ -1,3 +1,4 @@
+/*
 const API_URL = process.env.REACT_APP_API_URL;
 
 const authRequest = () => {
@@ -96,7 +97,7 @@ export const logout = () => {
 }
 
 
-/*
+
 export function loginSuccess() {
   return {type: types.LOG_IN_SUCCESS}
 }

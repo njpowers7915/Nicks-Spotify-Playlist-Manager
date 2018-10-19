@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
-//import { fetchPlaylist } from '../actions/PlaylistsActions';
+import { fetchPlaylist } from '../actions/PlaylistsActions';
 
 import TracksList from './TracksList'
-
+/*
 const PlaylistComponent = ({playlist}) =>
   <div key={playlist.id} className="PlaylistComponent">
     <h3>{playlist.name}</h3>
@@ -27,11 +27,12 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default connect(mapStateToProps)(PlaylistComponent)
+*/
 
 
-/*
 class PlaylistComponent extends React.Component {
-  componentWillMount() {
+
+  componentDidMount() {
     this.props.fetchPlaylist()
   }
 
@@ -39,24 +40,24 @@ class PlaylistComponent extends React.Component {
 
     debugger
     return(
-      <div key={this.props.id} className="PlaylistComponent">
-        <h3>{this.props.name}</h3>
-        <p>Description: {this.props.description}</p>
-        <TracksList tracks={this.props.tracks} />
+      <div key={this.props.playlist} className="PlaylistComponent">
+        <h3>{this.props.playlist.name}</h3>
+        <p>Description: {this.props.playlist.description}</p>
+        <TracksList tracks={this.props.playlist.tracks} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    playlist: state.playlist
+    playlist: state.playlists.attributes
   }
 }
 
 export default connect(mapStateToProps, {fetchPlaylist})(PlaylistComponent)
 
-
+/*
 class PlaylistComponent extends React.Component {
   constructor(props) {
     super(props)

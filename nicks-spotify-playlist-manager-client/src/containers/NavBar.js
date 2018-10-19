@@ -1,9 +1,24 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
-import { logout } from '../actions/authActions'
-//import LogoutButton from '../components/LogoutButton'
+//import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+//import { logout } from '../actions/authActions'
+import LogoutButton from '../components/LogoutButton'
 
+const NavBar = ({handleLogout}) =>
+  <div className="NavBar">
+    <h3>Welcome user! -- <Link to="/playlists">Home</Link> -- <LogoutButton handleLogout={handleLogout} /></h3>
+
+    {/* {<NavLink to="/" exact style={link}
+      activeStyle={{background: 'darkblue'}}>Home</NavLink>
+    <NavLink to="/about" exact style={link}
+      activeStyle={{background: 'darkblue'}}>Logout</NavLink> */}
+  </div>;
+
+export default NavBar
+
+
+
+/*
 class NavBar extends React.Component {
   handleLogout = (event) => {
     event.preventDefault();
@@ -25,16 +40,4 @@ class NavBar extends React.Component {
 }
 
 export default NavBar = withRouter(connect(null, {logout})(NavBar))
-/*
-const NavBar = ({handleLogout}) =>
-  <div className="NavBar">
-    <h3>Welcome user! -- <Link to="/playlists">Home</Link> -- <LogoutButton handleLogout={handleLogout} /></h3>
-
-     {<NavLink to="/" exact style={link}
-      activeStyle={{background: 'darkblue'}}>Home</NavLink>
-    <NavLink to="/about" exact style={link}
-      activeStyle={{background: 'darkblue'}}>Logout</NavLink>
-  </div>;
-
-export default NavBar
 */

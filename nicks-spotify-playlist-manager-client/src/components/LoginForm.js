@@ -1,18 +1,20 @@
 import React from 'react';
 //import TextInput from './common/TextInput';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+//import {connect} from 'react-redux';
+//import {withRouter} from 'react-router-dom';
 
-import { authenticate } from '../actions/authActions';
+//import { authenticate } from '../actions/authActions';
 
 class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       username: '',
       password: ''
     }
+    this.handleOnChange = this.handleOnChange.bind(this)
+    this.handleOnLogin = this.handleOnLogin.bind(this)
   }
 
   handleOnChange = (event) => {
@@ -33,18 +35,19 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div id="login">
+      <div id="loginForm">
         <h3>Log In</h3>
         <form onSubmit={this.handleOnLogin}>
           <input
             name="username"
-            id="username"
+            placeholder="username"
             type="text"
             value={this.state.username}
             onChange={this.handleOnChange}/>
 
           <input
             name="password"
+            placeholder="username"
             id="password"
             type="password"
             value={this.state.password}
@@ -52,15 +55,15 @@ class LoginForm extends React.Component {
 
           <input
             type="submit"
-            value="Log In"
+            value="Login!"
           />
         </form>
       </div>
     );
   }
 }
-
-export default LoginForm = withRouter(connect(null, {authenticate})(LoginForm))
+export default LoginForm
+//export default LoginForm = withRouter(connect(null, {authenticate})(LoginForm))
 
 /*
 import React, { Component } from 'react';

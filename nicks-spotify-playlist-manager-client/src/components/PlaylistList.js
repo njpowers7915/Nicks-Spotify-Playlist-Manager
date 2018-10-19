@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//import { connect } from 'react-redux';
-//import { fetchPlaylists } from '../actions/PlaylistsActions';
+import { connect } from 'react-redux';
+import { fetchPlaylists } from '../actions/PlaylistsActions';
 
+/*
 const PlaylistList = ({playlists}) => {
   const renderPlaylists = playlists.map(playlist =>
     <li key={playlist.id}>
@@ -20,15 +21,16 @@ const PlaylistList = ({playlists}) => {
 }
 
 export default PlaylistList;
+*/
 
 
-/*
 class PlaylistList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       playlists: []
+      playlistListLoaded: false
     }
   }
 
@@ -64,4 +66,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { fetchPlaylists })(PlaylistList)
-*/
